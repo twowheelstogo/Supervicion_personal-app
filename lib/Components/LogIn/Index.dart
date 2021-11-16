@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:footer/footer.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:control_empleados/Components/LogIn/Metodos.dart';
+import 'package:control_empleados/Components/MainPage/Index.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -27,13 +28,18 @@ class LoginPageState_ extends State<LoginPage> {
     print(bandera);
     if (bandera) {
       ScaffoldMessenger.of(context).showSnackBar(_snackbar);
+    } else {
+      Navigator.push(context, 
+       MaterialPageRoute(builder: 
+                (context) => MainPage()),
+              );      
     }
     //
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(      
+    return Scaffold(
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -110,11 +116,11 @@ class LoginPageState_ extends State<LoginPage> {
                                 style: OutlinedButton.styleFrom(
                                   primary: Colors.black,
                                   backgroundColor: HexColor('#6C63FF'),
-                                  padding: EdgeInsets.all(20),
+                                  padding: EdgeInsets.all(15),
                                   shape: const RoundedRectangleBorder(
                                       borderRadius: BorderRadius.all(
                                           Radius.circular(10))),
-                                  minimumSize: Size(double.infinity, 50),
+                                  minimumSize: Size(double.infinity, 40),
                                 ),
                                 onPressed: Imprimir,
                                 child: Text(
@@ -124,7 +130,8 @@ class LoginPageState_ extends State<LoginPage> {
                                     color: HexColor("#FFFFFF"),
                                     fontWeight: FontWeight.w400,
                                   ),
-                                )),
+                                )
+                                ),
                           ),
                         ],
                       ))
