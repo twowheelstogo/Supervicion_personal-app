@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'Components/LogIn/Index.dart';
-import 'package:footer/footer.dart';
-import 'package:footer/footer_view.dart';
+
 
 void main() {
   runApp(const MyApp());

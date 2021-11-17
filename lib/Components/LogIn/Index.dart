@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:footer/footer.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:control_empleados/Components/LogIn/Metodos.dart';
 import 'package:control_empleados/Components/MainPage/Index.dart';
