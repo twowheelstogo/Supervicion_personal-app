@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:getwidget/getwidget.dart';
+import 'package:control_empleados/Components/RevisionUniforme/Index.dart';
 
 class Cartas extends StatelessWidget {
   final String NombreUsuario;
@@ -10,9 +11,21 @@ class Cartas extends StatelessWidget {
   final String Genero;
 
   const Cartas(this.NombreUsuario, this.Agencia,this.UrlFoto,this.Genero,{Key? key}) : super(key: key);
+  
 
   @override
   Widget build(BuildContext context) {
+
+    void CalificarUsuario()
+  {
+    Navigator.push<void>(
+    context,
+    MaterialPageRoute<void>(
+      builder: (BuildContext context) =>  RevisionUniforme(this.NombreUsuario,this.Agencia,this.UrlFoto,this.Genero),
+    ),
+  );
+  }
+  
     return Column(
       children: [
         Card(
@@ -88,7 +101,7 @@ class Cartas extends StatelessWidget {
                             fontWeight: FontWeight.w400,
                           ),
                         ),
-                        onPressed: () {},
+                        onPressed: CalificarUsuario,
                         shape: new RoundedRectangleBorder(
                           borderRadius: new BorderRadius.circular(40.0),
                         ),
