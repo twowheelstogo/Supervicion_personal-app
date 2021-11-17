@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:control_empleados/Components/MainPage/Sesion.dart';
 
 class Presentacion extends StatefulWidget {
   const Presentacion({Key? key}) : super(key: key);
@@ -21,7 +22,6 @@ class Presentacion_ extends State<Presentacion> {
     return Nombre;
   }
 
-
   Presentacion_() {
     getName().then((val) => setState(() {
           NombreUsuario = val;
@@ -41,13 +41,23 @@ class Presentacion_ extends State<Presentacion> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: <Widget>[
+                          SizedBox(
+                              height: 10,
+                              ),
                           Container(
                               child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
+                              Container(
+                                alignment: Alignment.bottomRight,
+                                child: LogOut()
+                              ),
+                              // SizedBox(
+                              // height: 100,
+                              // ),
                               SizedBox(
-                              height: 120,
+                              height: 60,
                               ),
                               Container(
                                 alignment: Alignment.center,

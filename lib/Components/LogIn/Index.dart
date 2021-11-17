@@ -29,10 +29,13 @@ class LoginPageState_ extends State<LoginPage> {
     if (bandera) {
       ScaffoldMessenger.of(context).showSnackBar(_snackbar);
     } else {
-      Navigator.push(context, 
-       MaterialPageRoute(builder: 
-                (context) => MainPage()),
-              );      
+       Navigator.push<void>(
+    context,
+    MaterialPageRoute<void>(
+      builder: (BuildContext context) =>  MainPage(),
+    ),
+  );
+    //  Navigator.pushNamed(context, Main);            
     }
     //
   }

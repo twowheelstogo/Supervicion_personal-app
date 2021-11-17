@@ -13,8 +13,12 @@ class Autenticacion {
   // ignore: non_constant_identifier_names
   bool Autenticar(String usuario, String pass) {
     bool bandera = false;
-    if (usuario == 'ivan' && pass == '1234') {
-      storage_(usuario, pass);
+    //si es correcto entonces pasa a la siguiente vista
+    if (usuario == 'ivan arango' && pass == '1234') {
+      storage_(usuario, pass);            
+    }
+    else
+    {
       bandera = true;
     }
     return bandera;
