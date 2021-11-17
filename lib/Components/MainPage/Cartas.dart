@@ -9,23 +9,25 @@ class Cartas extends StatelessWidget {
   final String Agencia;
   final String UrlFoto;
   final String Genero;
+  final String now;
 
-  const Cartas(this.NombreUsuario, this.Agencia,this.UrlFoto,this.Genero,{Key? key}) : super(key: key);
-  
+  const Cartas(this.NombreUsuario, this.Agencia, this.UrlFoto, this.Genero,
+  this.now,
+      {Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    void CalificarUsuario() {
+      Navigator.push<void>(
+        context,
+        MaterialPageRoute<void>(
+          builder: (BuildContext context) => RevisionUniforme(
+              this.NombreUsuario, this.Agencia, this.UrlFoto, this.Genero,this.now),
+        ),
+      );
+    }
 
-    void CalificarUsuario()
-  {
-    Navigator.push<void>(
-    context,
-    MaterialPageRoute<void>(
-      builder: (BuildContext context) =>  RevisionUniforme(this.NombreUsuario,this.Agencia,this.UrlFoto,this.Genero),
-    ),
-  );
-  }
-  
     return Column(
       children: [
         Card(
@@ -74,11 +76,9 @@ class Cartas extends StatelessWidget {
                 //   this.UrlFoto,
                 //   height: 90,
                 // ),
-                trailing: 
-                GFAvatar(
-                  backgroundImage:NetworkImage(this.UrlFoto),
-                  shape: GFAvatarShape.standard
-                ),
+                trailing: GFAvatar(
+                    backgroundImage: NetworkImage(this.UrlFoto),
+                    shape: GFAvatarShape.standard),
               ),
               SizedBox(
                 height: 20,
@@ -106,8 +106,7 @@ class Cartas extends StatelessWidget {
                           borderRadius: new BorderRadius.circular(40.0),
                         ),
                       ),
-                    )
-                    )
+                    ))
               ]),
               SizedBox(
                 height: 20,

@@ -5,6 +5,7 @@ import 'package:control_empleados/Components/MainPage/Presentacion.dart';
 import 'package:control_empleados/Components/MainPage/Mensaje.dart';
 import 'package:control_empleados/Components/MainPage/Cartas.dart';
 import 'package:control_empleados/Components/MainPage/Metodos.dart';
+import 'package:intl/intl.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -16,6 +17,7 @@ class MainPage extends StatefulWidget {
 
 class MainPage_ extends State<MainPage> {
   
+  String now = DateFormat("yyyy-MM-dd").format(DateTime.now());
   @override
   Widget build(BuildContext context) {    
     return Scaffold(
@@ -24,7 +26,7 @@ class MainPage_ extends State<MainPage> {
       children: [
         Presentacion(),
         Mensaje(),
-        for ( var i in Principal().DataEmpleados() ) Cartas(i.Nombre,i.Agencia,i.urlFoto,i.Genero) 
+        for ( var i in Principal().DataEmpleados() ) Cartas(i.Nombre,i.Agencia,i.urlFoto,i.Genero,now) 
       ],
     )));
   }
