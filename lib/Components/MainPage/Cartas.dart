@@ -106,7 +106,8 @@ class Cartas extends StatelessWidget {
                           borderRadius: new BorderRadius.circular(40.0),
                         ),
                       ),
-                    ))
+                    )
+                    )
               ]),
               SizedBox(
                 height: 20,
