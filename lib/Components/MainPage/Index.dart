@@ -26,7 +26,7 @@ class MainPage_ extends State<MainPage> {
       children: [
         Presentacion(),
         Mensaje(),
-        for ( var i in Principal().DataEmpleados() ) Cartas(i.Nombre,i.Agencia,i.urlFoto,i.Genero,now) 
+        for ( var i in Principal().DataEmpleados() ) Cartas(i.Nombre,i.Agencia,i.urlFoto,i.Genero,now,i.Estado,i.Tiempo) 
       ],
     )));
   }

@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:control_empleados/Components/MainPage/Index.dart';
+import 'package:control_empleados/Components/RevisionUniforme/Metodos.dart';
+import 'package:control_empleados/Components/RevisionUniforme/ModalComentario.dart';
+import 'package:control_empleados/Components/RevisionUniforme/ModalCalificacion.dart';
 
 class RevisionUniforme extends StatelessWidget {
   final String NombreUsuario;
@@ -12,10 +15,10 @@ class RevisionUniforme extends StatelessWidget {
   final String now;
 
   const RevisionUniforme(
-      this.NombreUsuario, this.Agencia, this.UrlFoto, this.Genero,this.now,
+      this.NombreUsuario, this.Agencia, this.UrlFoto, this.Genero, this.now,
       {Key? key})
       : super(key: key);
-  
+
   String GetUrl() {
     String url = "";
     if (this.Genero == 'Masculino') {
@@ -25,9 +28,13 @@ class RevisionUniforme extends StatelessWidget {
     }
     return url;
   }
+  
+  
 
   @override
   Widget build(BuildContext context) {
+
+    
     void Regresar() {
       Navigator.push<void>(
         context,
@@ -36,23 +43,8 @@ class RevisionUniforme extends StatelessWidget {
         ),
       );
     }
-
-    void Calificar(String tipo) {
-      switch (tipo) {
-        case 'Camisa':
-          print('opcion 1');
-          break;
-
-        case 'Pantalon':
-        print('opcion 2');
-          break;
-
-        case 'Zapatos':
-        print('opcion 3');
-          break;
-      }
-    }
-
+    
+    
     return Scaffold(
         body: Center(
             child: Container(
@@ -69,7 +61,7 @@ class RevisionUniforme extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 SizedBox(
-                  height: 60,
+                  height: MediaQuery.of(context).size.width * 0.15,
                 ),
                 Container(
                     alignment: Alignment.bottomLeft,
@@ -97,7 +89,7 @@ class RevisionUniforme extends StatelessWidget {
                           ),
                         ))),
                 SizedBox(
-                  height: 10,
+                  height: MediaQuery.of(context).size.width * 0.05,
                 ),
                 Container(
                   alignment: Alignment.center,
@@ -109,37 +101,13 @@ class RevisionUniforme extends StatelessWidget {
                           color: HexColor("#FFFFFF"))),
                 ),
                 SizedBox(
-                  height: 130,
+                  height: MediaQuery.of(context).size.width * 0.28,
+                ),
+                UserData('Camisa','1'),
+                SizedBox(
+                  height: MediaQuery.of(context).size.width * 0.30,
                 ),
                 Container(
-                    alignment: Alignment.bottomRight,
-                    child: Padding(
-                        padding: EdgeInsets.only(right: 50.0),
-                        child: ButtonTheme(
-                          minWidth: 10.0,
-                          height: 45.0,
-                          child: RaisedButton(
-                            textColor: HexColor('#FFFFFF'),
-                            color: HexColor("#85868E"),
-                            child: Text(
-                              "1",
-                              style: TextStyle(
-                                fontSize: 28,
-                                fontFamily: 'InriaSans',
-                                color: HexColor("#FFFFFF"),
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ),
-                            onPressed: () => Calificar('Camisa'),
-                            shape: new RoundedRectangleBorder(
-                              borderRadius: new BorderRadius.circular(40.0),
-                            ),
-                          ),
-                        ))),
-                        SizedBox(
-                  height: 130,
-                ),
-                     Container(
                     alignment: Alignment.bottomRight,
                     child: Padding(
                         padding: EdgeInsets.only(right: 70.0),
@@ -158,16 +126,16 @@ class RevisionUniforme extends StatelessWidget {
                                 fontWeight: FontWeight.w400,
                               ),
                             ),
-                            onPressed: () => Calificar('Pantalon'),
+                            onPressed: () => Comentarios().Calificar('Pantalon'),
                             shape: new RoundedRectangleBorder(
                               borderRadius: new BorderRadius.circular(40.0),
                             ),
                           ),
                         ))),
-                          SizedBox(
-                  height: 48,
+                SizedBox(
+                  height: MediaQuery.of(context).size.width * 0.16,
                 ),
-                     Container(
+                Container(
                     alignment: Alignment.center,
                     child: Padding(
                         padding: EdgeInsets.only(right: 135.0),
@@ -186,14 +154,14 @@ class RevisionUniforme extends StatelessWidget {
                                 fontWeight: FontWeight.w400,
                               ),
                             ),
-                            onPressed: () => Calificar('Zapatos'),
+                            onPressed: () => Comentarios().Calificar('Zapatos'),
                             shape: new RoundedRectangleBorder(
                               borderRadius: new BorderRadius.circular(40.0),
                             ),
                           ),
                         ))),
-                         SizedBox(
-                  height: 48,
+                SizedBox(
+                  height: MediaQuery.of(context).size.width * 0.20,
                 ),
                 Container(
                   margin: const EdgeInsets.only(top: 10),
@@ -221,9 +189,30 @@ class RevisionUniforme extends StatelessWidget {
                           fontSize: 20,
                           fontWeight: FontWeight.w700)),
                 ),
+              SizedBox(
+                  height: 10,
+                ),
+                ModalComentario(),                
+                        SizedBox(
+                  height: 10,
+                ),
               ],
             ),
           )),
     )));
+  }
+
+  Widget AlinearBotones() {
+    return Column(
+      children: [], 
+    );
+  }
+
+  Widget Titulo() {
+    return Column(
+      children: [
+        
+      ],
+    );
   }
 }

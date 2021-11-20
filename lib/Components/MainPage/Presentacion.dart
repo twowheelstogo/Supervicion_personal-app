@@ -43,7 +43,7 @@ class Presentacion_ extends State<Presentacion> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: <Widget>[
                           SizedBox(
-                              height: 10,
+                              height: MediaQuery.of(context).size.width * 0.07,
                               ),
                           Container(
                               child: Column(
@@ -58,17 +58,18 @@ class Presentacion_ extends State<Presentacion> {
                               // height: 100,
                               // ),
                               SizedBox(
-                              height: 60,
+                              height: MediaQuery.of(context).size.width * 0.07,
                               ),
                               Container(
                                 alignment: Alignment.center,
                                 child: Text('Bienvenido',style: TextStyle(
                                   fontFamily: "InriaSans",
                                   fontWeight: FontWeight.w700,
-                                  fontSize: 50,color: HexColor("#FFFFFF"))),
+                                  fontSize: 50,color: HexColor("#FFFFFF"))
+                                  ),
                               ),
                                SizedBox(
-                              height: 20,
+                              height: MediaQuery.of(context).size.width * 0.05,
                               ),  
                               Container(
                                 alignment: Alignment.center,
