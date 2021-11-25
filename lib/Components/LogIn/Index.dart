@@ -4,6 +4,7 @@ import 'package:control_empleados/Components/LogIn/Metodos.dart';
 import 'package:control_empleados/Components/MainPage/Index.dart';
 import 'package:control_empleados/Components/Constants/Index.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:control_empleados/Components/Componentes/spinner.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -23,7 +24,6 @@ class LoginPageState_ extends State<LoginPage> {
     password.text = "";
 
     main();
-
     super.initState();
   }
 
@@ -44,8 +44,12 @@ class LoginPageState_ extends State<LoginPage> {
     }
   }
 
-  void Imprimir() {
-    bandera = Autenticacion().Autenticar(username.text, password.text);
+  void Imprimir() async {
+    // showDialog(
+    //     context: context,
+    //     builder: (context) => Spinner(),
+    //     barrierDismissible: true);
+    bandera = await Autenticacion().Autenticar(username.text);
     print(bandera);
     if (bandera) {
       ScaffoldMessenger.of(context).showSnackBar(_snackbar);
