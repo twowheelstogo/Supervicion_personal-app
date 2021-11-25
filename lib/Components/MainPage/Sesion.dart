@@ -25,13 +25,13 @@ class LogOut_ extends State<LogOut> {
     }
   }
 
-  void signOut() async {
-    SharedPreferences sharedPreference = await SharedPreferences.getInstance();
-    List<String> keys = sharedPreference.getKeys() as List<String>;
-    keys.remove("usuario");
-    keys.remove("pass");    
-    keys.remove("Region");
-    keys.remove("UsuarioB");
+  void signOut() async {  
+    SharedPreferences prefs;
+    prefs = await SharedPreferences.getInstance();
+    prefs.remove("usuario");
+    prefs.remove("pass");
+    prefs.remove("Region");
+    prefs.remove("UsuarioB");        
 
   }
 

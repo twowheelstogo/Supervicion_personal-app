@@ -26,21 +26,24 @@ class LoginPageState_ extends State<LoginPage> {
 
     super.initState();
   }
-  
+
   Future<void> main() async {
     WidgetsFlutterBinding.ensureInitialized();
     SharedPreferences prefs = await SharedPreferences.getInstance();
     var NombreUsuario = prefs.getString('usuario');
     if (NombreUsuario != null) {
-      Navigator.push<void>(
-        context,
-        MaterialPageRoute<void>(
-          builder: (BuildContext context) => MainPage(),
-        ),
-      );
+      if (NombreUsuario.toString().length > 0) {
+        print(NombreUsuario);
+        Navigator.push<void>(
+          context,
+          MaterialPageRoute<void>(
+            builder: (BuildContext context) => MainPage(),
+          ),
+        );
+      }
     }
   }
-   
+
   void Imprimir() {
     bandera = Autenticacion().Autenticar(username.text, password.text);
     print(bandera);

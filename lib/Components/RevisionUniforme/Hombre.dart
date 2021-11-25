@@ -30,7 +30,25 @@ class RevisionUniformeHombre extends StatelessWidget {
     return Scaffold(
         body: Column(
       children: [
-         SizedBox(
+
+        //Titulo Y Regresar
+        Container(
+          width: double.infinity,
+          height: 400,
+          padding: EdgeInsets.symmetric(horizontal: 20),
+          decoration: BoxDecoration(
+        image: DecorationImage(
+            image: AssetImage(
+                    "assets/images/CuerpoHombre/CabezaHombre.png"
+                    ),
+            fit: BoxFit.cover
+        )
+          ),          
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                SizedBox(
                   height: MediaQuery.of(context).size.width * 0.15,
                 ),
                 Regresar_(context),
@@ -38,6 +56,8 @@ class RevisionUniformeHombre extends StatelessWidget {
                   height: MediaQuery.of(context).size.width * 0.05,
                 ),
                 Titulo(),
+              ]))    
+        )     
       ],
     ));
   }
