@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:control_empleados/Components/LogIn/Metodos.dart';
 import 'package:control_empleados/Components/MainPage/Index.dart';
+import 'package:control_empleados/Components/Constants/Index.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -28,13 +29,13 @@ class LoginPageState_ extends State<LoginPage> {
     if (bandera) {
       ScaffoldMessenger.of(context).showSnackBar(_snackbar);
     } else {
-       Navigator.push<void>(
-    context,
-    MaterialPageRoute<void>(
-      builder: (BuildContext context) =>  MainPage(),
-    ),
-  );
-    //  Navigator.pushNamed(context, Main);            
+      Navigator.push<void>(
+        context,
+        MaterialPageRoute<void>(
+          builder: (BuildContext context) => MainPage(),
+        ),
+      );
+      //  Navigator.pushNamed(context, Main);
     }
     //
   }
@@ -67,23 +68,23 @@ class LoginPageState_ extends State<LoginPage> {
                             alignment: Alignment.center,
                             child: TextField(
                                 controller: username,
-                                cursorColor: HexColor('#6C63FF'),
-                                style: TextStyle(color: HexColor('#6C63FF')),
+                                cursorColor: HexColor(ColorPrincipal),
+                                style: TextStyle(color: HexColor(ColorPrincipal)),
                                 decoration: InputDecoration(
                                   focusedBorder: UnderlineInputBorder(
                                     borderSide: BorderSide(
-                                        color: HexColor('#6C63FF'), width: 4.5),
+                                        color: HexColor(ColorPrincipal), width: 4.5),
                                   ),
                                   enabledBorder: UnderlineInputBorder(
                                     borderSide: BorderSide(
-                                        color: HexColor('#6C63FF'), width: 4.5),
+                                        color: HexColor(ColorPrincipal), width: 4.5),
                                   ),
                                   labelStyle: TextStyle(
-                                      color: HexColor('#6C63FF'), fontSize: 22),
+                                      color: HexColor(ColorPrincipal), fontSize: 22),
                                   labelText: "Usuario",
                                   prefixIcon: Icon(Icons.account_circle,
                                       color: HexColor(
-                                          '#6C63FF')), //icon at head of input
+                                          ColorPrincipal)), //icon at head of input
                                 )),
                           ),
                           Container(
@@ -91,22 +92,22 @@ class LoginPageState_ extends State<LoginPage> {
                             child: TextField(
                               controller: password,
                               obscureText: true,
-                              cursorColor: HexColor('#6C63FF'),
-                              style: TextStyle(color: HexColor('#6C63FF')),
+                              cursorColor: HexColor(ColorPrincipal),
+                              style: TextStyle(color: HexColor(ColorPrincipal)),
                               decoration: InputDecoration(
                                   focusedBorder: UnderlineInputBorder(
                                     borderSide: BorderSide(
-                                        color: HexColor('#6C63FF'), width: 4.5),
+                                        color: HexColor(ColorPrincipal), width: 4.5),
                                   ),
                                   enabledBorder: UnderlineInputBorder(
                                     borderSide: BorderSide(
-                                        color: HexColor('#6C63FF'), width: 4.5),
+                                        color: HexColor(ColorPrincipal), width: 4.5),
                                   ),
                                   labelStyle: TextStyle(
-                                      color: HexColor('#6C63FF'), fontSize: 22),
+                                      color: HexColor(ColorPrincipal), fontSize: 22),
                                   labelText: "Contraseña",
                                   prefixIcon: Icon(Icons.lock,
-                                      color: HexColor('#6C63FF'))),
+                                      color: HexColor(ColorPrincipal))),
                             ),
                           ),
                           SizedBox(
@@ -117,7 +118,7 @@ class LoginPageState_ extends State<LoginPage> {
                             child: OutlinedButton(
                                 style: OutlinedButton.styleFrom(
                                   primary: Colors.black,
-                                  backgroundColor: HexColor('#6C63FF'),
+                                  backgroundColor: HexColor(ColorPrincipal),
                                   padding: EdgeInsets.all(15),
                                   shape: const RoundedRectangleBorder(
                                       borderRadius: BorderRadius.all(
@@ -132,8 +133,7 @@ class LoginPageState_ extends State<LoginPage> {
                                     color: HexColor("#FFFFFF"),
                                     fontWeight: FontWeight.w400,
                                   ),
-                                )
-                                ),
+                                )),
                           ),
                         ],
                       ))

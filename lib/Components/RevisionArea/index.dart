@@ -57,7 +57,7 @@ class RevisionArea extends StatelessWidget {
                               "Regresar",
                               style: TextStyle(
                                 fontSize: 20,
-                                fontFamily: 'InriaSans',
+                                fontFamily: 'Lato',
                                 color: HexColor("#FFFFFF"),
                                 fontWeight: FontWeight.w400,
                               ),

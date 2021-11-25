@@ -4,21 +4,28 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:control_empleados/Components/MainPage/Index.dart';
 import 'package:control_empleados/Components/RevisionUniforme/Metodos.dart';
+import 'package:control_empleados/Components/Componentes/slider.dart';
 
 class UserData extends StatefulWidget {
   final String Tipo;
   final String Numero;
-  const UserData(this.Tipo,this.Numero);
+  final double Left;
+  final double Right;
+  final double Top;
+  final double Bottom;
+  const UserData(this.Tipo, this.Numero,this.Left,this.Right,this.Top,this.Bottom);
 
   @override
   ModalCalificacion createState() => ModalCalificacion();
 }
 
+double val = 0;
+
 class ModalCalificacion extends State<UserData> {
+  bool _value = false;
+  double val = 1;
   @override
   Widget build(BuildContext context) {
-    double _currentSliderValue = 0;
-
     void _showModalBottomSheet(BuildContext context) {
       showModalBottomSheet(
           context: context,
@@ -27,98 +34,36 @@ class ModalCalificacion extends State<UserData> {
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 ListTile(
-                    title: Align(
-                      alignment: Alignment.center,
-                      child: new Text(widget.Tipo,
-                          style: TextStyle(
-                            fontFamily: "InriaSans",
-                            fontWeight: FontWeight.w700,
-                            fontSize: 20,
-                          )),
-                    ),
-                    subtitle: Column(
+                  title: Align(
+                    alignment: Alignment.center,
+                    child: new Text(widget.Tipo,
+                        style: TextStyle(
+                          fontFamily: "Lato",
+                          fontWeight: FontWeight.w700,
+                          fontSize: 20,
+                        )),
+                  ),
+                ),
+                Column(
+                  children: [
+                    Column(
                       children: [
-                        SizedBox(height: 20),
                         Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: Center(child:
-                        Slider(
-                           value: _currentSliderValue,
-                            min: 0,
-                            max: 100,
-                            divisions: 10,
-                            label: _currentSliderValue.round().toString(),
-                          onChanged: (double value) {
-                            setState(() {
-                              _currentSliderValue = value;
-                            });
-                          },
-                        )
-                        ))
+                            padding: const EdgeInsets.only(bottom: 25.0),
+                            child:
+                                Center(child: MySliderApp(val, widget.Tipo))),
                       ],
-                    )),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Padding(
-                        padding: EdgeInsets.only(right: 0.0, bottom: 30),
-                        child: ButtonTheme(
-                          minWidth: 100.0,
-                          height: 45.0,
-                          child: RaisedButton(
-                            textColor: HexColor('#FFFFFF'),
-                            color: HexColor("#B3B4BC"),
-                            child: Text(
-                              "Aceptar",
-                              style: TextStyle(
-                                fontSize: 20,
-                                fontFamily: 'InriaSans',
-                                color: HexColor("#FFFFFF"),
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ),
-                            onPressed: () => Comentarios()
-                                .Calificacion(widget.Tipo, _currentSliderValue),
-                            shape: new RoundedRectangleBorder(
-                              borderRadius: new BorderRadius.circular(40.0),
-                            ),
-                          ),
-                        )),
-                    Padding(
-                        padding: EdgeInsets.only(left: 20.0, bottom: 30),
-                        child: ButtonTheme(
-                          minWidth: 100.0,
-                          height: 45.0,
-                          child: RaisedButton(
-                            textColor: HexColor('#FFFFFF'),
-                            color: HexColor("#B3B4BC"),
-                            child: Text(
-                              "Cancelar",
-                              style: TextStyle(
-                                fontSize: 20,
-                                fontFamily: 'InriaSans',
-                                color: HexColor("#FFFFFF"),
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ),
-                            onPressed: () => Navigator.pop(context),
-                            shape: new RoundedRectangleBorder(
-                              borderRadius: new BorderRadius.circular(40.0),
-                            ),
-                          ),
-                        )),
+                    )
                   ],
-                )
+                ),
               ],
             );
           });
     }
 
     return (Column(children: [
-      Container(
-          alignment: Alignment.bottomRight,
-          child: Padding(
-              padding: EdgeInsets.only(right: 50.0),
+       Stack(children: [
+            Positioned(              
               child: ButtonTheme(
                 minWidth: 10.0,
                 height: 45.0,
@@ -126,10 +71,10 @@ class ModalCalificacion extends State<UserData> {
                   textColor: HexColor('#FFFFFF'),
                   color: HexColor("#85868E"),
                   child: Text(
-                    "1",
+                    widget.Numero.toString(),
                     style: TextStyle(
                       fontSize: 28,
-                      fontFamily: 'InriaSans',
+                      fontFamily: 'Lato',
                       color: HexColor("#FFFFFF"),
                       fontWeight: FontWeight.w400,
                     ),
@@ -139,7 +84,9 @@ class ModalCalificacion extends State<UserData> {
                     borderRadius: new BorderRadius.circular(40.0),
                   ),
                 ),
-              ))),
+              )
+              )
+          ],)              
     ]));
   }
 }

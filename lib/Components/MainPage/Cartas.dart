@@ -15,41 +15,37 @@ class Cartas extends StatelessWidget {
   final String now;
   final String Estado;
   final DateTime Tiempo;
+  final String Region;
 
-  const Cartas(
-      this.NombreUsuario, this.Agencia, this.UrlFoto, this.Genero, this.now,this.Estado,this.Tiempo,
+  const Cartas(this.NombreUsuario, this.Agencia, this.UrlFoto, this.Genero,
+      this.now, this.Estado, this.Tiempo, this.Region,
       {Key? key})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     void CalificarUsuario(int Opcion) {
-      if(Opcion == 1)
-      {
+      if (Opcion == 1) {
         Navigator.push<void>(
-        context,
-        MaterialPageRoute<void>(
-          builder: (BuildContext context) => RevisionUniforme(
-              this.NombreUsuario,
-              this.Agencia,
-              this.UrlFoto,
-              this.Genero,
-              this.now),
-        ),
-      );
+          context,
+          MaterialPageRoute<void>(
+            builder: (BuildContext context) => RevisionUniforme(
+                this.NombreUsuario,
+                this.Agencia,
+                this.UrlFoto,
+                this.Genero,
+                this.now),
+          ),
+        );
+      } else {
+        Navigator.push<void>(
+          context,
+          MaterialPageRoute<void>(
+            builder: (BuildContext context) =>
+                RevisionArea(this.NombreUsuario, this.Agencia, this.now),
+          ),
+        );
       }
-      else{
-          Navigator.push<void>(
-        context,
-        MaterialPageRoute<void>(
-          builder: (BuildContext context) => RevisionArea(
-              this.NombreUsuario,
-              this.Agencia,                            
-              this.now),
-        ),
-      );
-      }
-      
     }
 
     return Column(
@@ -107,6 +103,20 @@ class Cartas extends StatelessWidget {
                               bottom: BorderSide(
                                   width: 1.5, color: HexColor("#C4C4C4"))),
                         ),
+                        child: Text("Región: " + this.Region,
+                            style: TextStyle(
+                                color: HexColor('#85868E'),
+                                fontSize: 20,
+                                fontWeight: FontWeight.w700)),
+                      ),
+                      Container(
+                        margin: const EdgeInsets.only(top: 10),
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          border: Border(
+                              bottom: BorderSide(
+                                  width: 1.5, color: HexColor("#C4C4C4"))),
+                        ),
                         child: Text("Estado: " + this.Estado,
                             style: TextStyle(
                                 color: HexColor('#85868E'),
@@ -121,7 +131,10 @@ class Cartas extends StatelessWidget {
                               bottom: BorderSide(
                                   width: 1.5, color: HexColor("#C4C4C4"))),
                         ),
-                        child: Text("Laborando: " + TiempoLaborando().ObtenerTiempoLaborando(this.Tiempo.toString()),
+                        child: Text(
+                            "Laborando: " +
+                                TiempoLaborando().ObtenerTiempoLaborando(
+                                    this.Tiempo.toString()),
                             style: TextStyle(
                                 color: HexColor('#85868E'),
                                 fontSize: 20,
@@ -137,7 +150,7 @@ class Cartas extends StatelessWidget {
                 Padding(
                     padding: EdgeInsets.only(left: 13.0, right: 0.0),
                     child: ButtonTheme(
-                      minWidth: MediaQuery.of(context).size.width * 0.05,                      
+                      minWidth: MediaQuery.of(context).size.width * 0.05,
                       height: 45.0,
                       child: RaisedButton(
                         textColor: HexColor('#FFFFFF'),
@@ -146,7 +159,7 @@ class Cartas extends StatelessWidget {
                           "Revisar Uniforme",
                           style: TextStyle(
                             fontSize: 20,
-                            fontFamily: 'InriaSans',
+                            fontFamily: 'Lato',
                             color: HexColor("#FFFFFF"),
                             fontWeight: FontWeight.w400,
                           ),
@@ -156,13 +169,11 @@ class Cartas extends StatelessWidget {
                           borderRadius: new BorderRadius.circular(40.0),
                         ),
                       ),
-                    )
-                    ),
-                    
-                    Padding(
+                    )),
+                Padding(
                     padding: EdgeInsets.only(left: 10.0, right: 0.0),
                     child: ButtonTheme(
-                      minWidth: MediaQuery.of(context).size.width * 0.1,                      
+                      minWidth: MediaQuery.of(context).size.width * 0.1,
                       height: 45.0,
                       child: RaisedButton(
                         textColor: HexColor('#FFFFFF'),
@@ -171,7 +182,7 @@ class Cartas extends StatelessWidget {
                           "Revisar Area",
                           style: TextStyle(
                             fontSize: 20,
-                            fontFamily: 'InriaSans',
+                            fontFamily: 'Lato',
                             color: HexColor("#FFFFFF"),
                             fontWeight: FontWeight.w400,
                           ),
@@ -181,9 +192,7 @@ class Cartas extends StatelessWidget {
                           borderRadius: new BorderRadius.circular(40.0),
                         ),
                       ),
-                    )
-                    ),
-
+                    )),
               ]),
               SizedBox(
                 height: 20,

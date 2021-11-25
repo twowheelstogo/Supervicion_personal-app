@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:control_empleados/Components/MainPage/Sesion.dart';
+import 'package:control_empleados/Components/Constants/Index.dart';
 
 class Presentacion extends StatefulWidget {
   const Presentacion({Key? key}) : super(key: key);
@@ -34,7 +35,7 @@ class Presentacion_ extends State<Presentacion> {
     return Column(        
           children: [
                Container(                    
-                    color: HexColor('#6C63FF'),                    
+                    color: HexColor(ColorPrincipal),                    
                     width: double.infinity,
                     height: MediaQuery.of(context).size.width * 0.7,
                     padding: EdgeInsets.symmetric(horizontal: 20),
@@ -57,24 +58,35 @@ class Presentacion_ extends State<Presentacion> {
                               // SizedBox(
                               // height: 100,
                               // ),
-                              SizedBox(
-                              height: MediaQuery.of(context).size.width * 0.07,
+
+                        SizedBox(
+                        height: MediaQuery.of(context).size.width * 0.01,
+                        ),
+
+                        Container(
+                        alignment: Alignment.bottomCenter,
+                        child: Image.asset("assets/images/TalenHub.PNG",
+                        fit: BoxFit.fill, width: 65, height: 90)
+                        ),
+
+                        SizedBox(
+                              height: MediaQuery.of(context).size.width * 0.02,
                               ),
                               Container(
                                 alignment: Alignment.center,
                                 child: Text('Bienvenido',style: TextStyle(
-                                  fontFamily: "InriaSans",
+                                  fontFamily: "Lato",
                                   fontWeight: FontWeight.w700,
-                                  fontSize: 50,color: HexColor("#FFFFFF"))
+                                  fontSize: 32,color: HexColor("#FFFFFF"))
                                   ),
                               ),
                                SizedBox(
-                              height: MediaQuery.of(context).size.width * 0.05,
+                              height: MediaQuery.of(context).size.width * 0.02,
                               ),  
                               Container(
                                 alignment: Alignment.center,
-                                child: Text(NombreUsuario,style: TextStyle(fontSize: 35,
-                                fontFamily: "InriaSans",
+                                child: Text(NombreUsuario,style: TextStyle(fontSize: 24,
+                                fontFamily: "Lato",
                                   fontWeight: FontWeight.w300,
                                 color: HexColor("#FFFFFF"))),
                               ),                             

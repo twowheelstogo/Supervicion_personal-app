@@ -28,14 +28,8 @@ class RevisionUniforme extends StatelessWidget {
     }
     return url;
   }
-  
-  
 
-  @override
-  Widget build(BuildContext context) {
-
-    
-    void Regresar() {
+  void Regresar(context) {
       Navigator.push<void>(
         context,
         MaterialPageRoute<void>(
@@ -43,7 +37,9 @@ class RevisionUniforme extends StatelessWidget {
         ),
       );
     }
-    
+
+  @override
+  Widget build(BuildContext context) {
     
     return Scaffold(
         body: Center(
@@ -63,6 +59,54 @@ class RevisionUniforme extends StatelessWidget {
                 SizedBox(
                   height: MediaQuery.of(context).size.width * 0.15,
                 ),
+                Regresar_(context),
+                SizedBox(
+                  height: MediaQuery.of(context).size.width * 0.05,
+                ),
+                Titulo(),
+                //this.Left,this.Right,this.Top,this.Bottom
+                Container(
+                  alignment: Alignment.bottomRight,
+                  child: UserData('Camisa', '1', 0, 50,
+                      MediaQuery.of(context).size.width * 0.40, 0),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.width * 0.30,
+                ),
+                Container(
+                  alignment: Alignment.bottomRight,
+                  child: UserData('Pantalon', '2', 0, 50,
+                      MediaQuery.of(context).size.width * 0.40, 0),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.width * 0.16,
+                ),
+                Container(
+                  alignment: Alignment.bottomLeft,
+                  child: UserData('Zapatos', '3', 0, 50,
+                      MediaQuery.of(context).size.width * 0.40, 0),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.width * 0.20,
+                ),
+                Nombre_Usuario(),
+                Fecha(),
+                SizedBox(
+                  height: 10,
+                ),
+                ModalComentario(),
+                SizedBox(
+                  height: 10,
+                ),
+              ],
+            ),
+          )),
+    )));
+  }
+
+  Widget Regresar_(context) {
+    return Column(
+      children: [
                 Container(
                     alignment: Alignment.bottomLeft,
                     child: Padding(
@@ -77,141 +121,71 @@ class RevisionUniforme extends StatelessWidget {
                               "Regresar",
                               style: TextStyle(
                                 fontSize: 20,
-                                fontFamily: 'InriaSans',
+                                fontFamily: 'Lato',
                                 color: HexColor("#FFFFFF"),
                                 fontWeight: FontWeight.w400,
                               ),
                             ),
-                            onPressed: Regresar,
+                            onPressed: () => Regresar(context),
                             shape: new RoundedRectangleBorder(
                               borderRadius: new BorderRadius.circular(40.0),
                             ),
                           ),
                         ))),
-                SizedBox(
-                  height: MediaQuery.of(context).size.width * 0.05,
-                ),
-                Container(
-                  alignment: Alignment.center,
-                  child: Text('Supervisión del uniforme',
-                      style: TextStyle(
-                          fontFamily: "InriaSans",
-                          fontWeight: FontWeight.w700,
-                          fontSize: 32,
-                          color: HexColor("#FFFFFF"))),
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.width * 0.28,
-                ),
-                UserData('Camisa','1'),
-                SizedBox(
-                  height: MediaQuery.of(context).size.width * 0.30,
-                ),
-                Container(
-                    alignment: Alignment.bottomRight,
-                    child: Padding(
-                        padding: EdgeInsets.only(right: 70.0),
-                        child: ButtonTheme(
-                          minWidth: 10.0,
-                          height: 45.0,
-                          child: RaisedButton(
-                            textColor: HexColor('#FFFFFF'),
-                            color: HexColor("#85868E"),
-                            child: Text(
-                              "2",
-                              style: TextStyle(
-                                fontSize: 28,
-                                fontFamily: 'InriaSans',
-                                color: HexColor("#FFFFFF"),
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ),
-                            onPressed: () => Comentarios().Calificar('Pantalon'),
-                            shape: new RoundedRectangleBorder(
-                              borderRadius: new BorderRadius.circular(40.0),
-                            ),
-                          ),
-                        ))),
-                SizedBox(
-                  height: MediaQuery.of(context).size.width * 0.16,
-                ),
-                Container(
-                    alignment: Alignment.center,
-                    child: Padding(
-                        padding: EdgeInsets.only(right: 135.0),
-                        child: ButtonTheme(
-                          minWidth: 10.0,
-                          height: 45.0,
-                          child: RaisedButton(
-                            textColor: HexColor('#FFFFFF'),
-                            color: HexColor("#85868E"),
-                            child: Text(
-                              "3",
-                              style: TextStyle(
-                                fontSize: 28,
-                                fontFamily: 'InriaSans',
-                                color: HexColor("#FFFFFF"),
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ),
-                            onPressed: () => Comentarios().Calificar('Zapatos'),
-                            shape: new RoundedRectangleBorder(
-                              borderRadius: new BorderRadius.circular(40.0),
-                            ),
-                          ),
-                        ))),
-                SizedBox(
-                  height: MediaQuery.of(context).size.width * 0.20,
-                ),
-                Container(
-                  margin: const EdgeInsets.only(top: 10),
-                  decoration: BoxDecoration(
-                    border: Border(
-                        bottom:
-                            BorderSide(width: 1.5, color: HexColor("#C4C4C4"))),
-                  ),
-                  child: Text("Nombre: " + this.NombreUsuario,
-                      style: TextStyle(
-                          color: HexColor('#85868E'),
-                          fontSize: 20,
-                          fontWeight: FontWeight.w700)),
-                ),
-                Container(
-                  margin: const EdgeInsets.only(top: 10),
-                  decoration: BoxDecoration(
-                    border: Border(
-                        bottom:
-                            BorderSide(width: 1.5, color: HexColor("#C4C4C4"))),
-                  ),
-                  child: Text("Fecha: " + this.now,
-                      style: TextStyle(
-                          color: HexColor('#85868E'),
-                          fontSize: 20,
-                          fontWeight: FontWeight.w700)),
-                ),
-              SizedBox(
-                  height: 10,
-                ),
-                ModalComentario(),                
-                        SizedBox(
-                  height: 10,
-                ),
-              ],
-            ),
-          )),
-    )));
-  }
-
-  Widget AlinearBotones() {
-    return Column(
-      children: [], 
+      ],
     );
   }
 
   Widget Titulo() {
     return Column(
       children: [
-        
+        Container(
+          alignment: Alignment.center,
+          child: Text('Supervisión del uniforme',
+              style: TextStyle(
+                  fontFamily: "Lato",
+                  fontWeight: FontWeight.w700,
+                  fontSize: 32,
+                  color: HexColor("#FFFFFF"))),
+        ),
+      ],
+    );
+  }
+
+  Widget Fecha() {
+    return Column(
+      children: [
+        Container(
+          margin: const EdgeInsets.only(top: 10),
+          decoration: BoxDecoration(
+            border: Border(
+                bottom: BorderSide(width: 1.5, color: HexColor("#C4C4C4"))),
+          ),
+          child: Text("Fecha: " + this.now,
+              style: TextStyle(
+                  color: HexColor('#85868E'),
+                  fontSize: 20,
+                  fontWeight: FontWeight.w700)),
+        ),
+      ],
+    );
+  }
+
+  Widget Nombre_Usuario() {
+    return Column(
+      children: [
+        Container(
+          margin: const EdgeInsets.only(top: 10),
+          decoration: BoxDecoration(
+            border: Border(
+                bottom: BorderSide(width: 1.5, color: HexColor("#C4C4C4"))),
+          ),
+          child: Text("Nombre: " + this.NombreUsuario,
+              style: TextStyle(
+                  color: HexColor('#85868E'),
+                  fontSize: 20,
+                  fontWeight: FontWeight.w700)),
+        ),
       ],
     );
   }

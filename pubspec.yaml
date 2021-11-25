@@ -39,6 +39,7 @@ dependencies:
   intl: ^0.17.0
   cached_network_image: ^3.1.0+1
   getflutter: ^1.1.3
+  custom_switch: ^0.0.1
 
 dev_dependencies:
   flutter_test:
@@ -67,6 +68,7 @@ flutter:
     - assets/images/Hombre.png
     - assets/images/Mujer.png
     - assets/images/R.jpg
+    - assets/images/TalenHub.PNG
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
@@ -81,9 +83,12 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-    - family: InriaSans
+    - family: Lato
       fonts:
-        - asset: assets/Font/InriaSans-Bold.ttf
+        - asset: assets/Font/Lato-Bold.ttf
+    - family: Lato
+      fonts:
+        - asset: assets/Font/Lato-Bold.ttf
   #   - family: Trajan Pro
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf

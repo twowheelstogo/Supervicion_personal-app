@@ -22,7 +22,7 @@ class ModalComentario extends StatelessWidget {
                       alignment: Alignment.center,
                       child: new Text('Agregar Comentarios',
                           style: TextStyle(
-                            fontFamily: "InriaSans",
+                            fontFamily: "Lato",
                             fontWeight: FontWeight.w700,
                             fontSize: 20,
                           )),
@@ -61,7 +61,7 @@ class ModalComentario extends StatelessWidget {
                               "Aceptar",
                               style: TextStyle(
                                 fontSize: 20,
-                                fontFamily: 'InriaSans',
+                                fontFamily: 'Lato',
                                 color: HexColor("#FFFFFF"),
                                 fontWeight: FontWeight.w400,
                               ),
@@ -85,7 +85,7 @@ class ModalComentario extends StatelessWidget {
                               "Cancelar",
                               style: TextStyle(
                                 fontSize: 20,
-                                fontFamily: 'InriaSans',
+                                fontFamily: 'Lato',
                                 color: HexColor("#FFFFFF"),
                                 fontWeight: FontWeight.w400,
                               ),
@@ -119,7 +119,7 @@ class ModalComentario extends StatelessWidget {
                       "Añadir Comentarios",
                       style: TextStyle(
                         fontSize: 20,
-                        fontFamily: 'InriaSans',
+                        fontFamily: 'Lato',
                         color: HexColor("#FFFFFF"),
                         fontWeight: FontWeight.w400,
                       ),

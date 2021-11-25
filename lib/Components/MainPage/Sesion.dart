@@ -29,7 +29,10 @@ class LogOut_ extends State<LogOut> {
     SharedPreferences sharedPreference = await SharedPreferences.getInstance();
     List<String> keys = sharedPreference.getKeys() as List<String>;
     keys.remove("usuario");
-    keys.remove("pass");
+    keys.remove("pass");    
+    keys.remove("Region");
+    keys.remove("UsuarioB");
+
   }
 
   String NombreUsuario = "";
