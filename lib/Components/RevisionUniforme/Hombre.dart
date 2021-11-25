@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:control_empleados/Components/MainPage/Metodos.dart';
 import 'package:control_empleados/Components/MainPage/Index.dart';
+import 'package:control_empleados/Components/RevisionUniforme/ModalComentario.dart';
+import 'package:control_empleados/Components/RevisionUniforme/ModalCalificacion.dart';
 
 class RevisionUniformeHombre extends StatelessWidget {
   final String NombreUsuario;
@@ -14,7 +16,7 @@ class RevisionUniformeHombre extends StatelessWidget {
   const RevisionUniformeHombre(this.NombreUsuario, this.Agencia, this.UrlFoto,
       this.Genero, this.now, this.Tiempo,
       {Key? key})
-      : super(key: key);  
+      : super(key: key);
 
   void Regresar(context) {
     Navigator.push<void>(
@@ -28,47 +30,125 @@ class RevisionUniformeHombre extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Column(
-      children: [
-
-        //Titulo Y Regresar
-        Container(
-          width: double.infinity,
-          height: 400,
-          padding: EdgeInsets.symmetric(horizontal: 20),
-          decoration: BoxDecoration(
-        image: DecorationImage(
-            image: AssetImage(
-                    "assets/images/CuerpoHombre/CabezaHombre.png"
-                    ),
-            fit: BoxFit.cover
-        )
-          ),          
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                SizedBox(
-                  height: MediaQuery.of(context).size.width * 0.15,
-                ),
-                Regresar_(context),
-                SizedBox(
-                  height: MediaQuery.of(context).size.width * 0.05,
-                ),
-                Titulo(),
-              ]))    
-        )     
-      ],
-    ));
+        body: SingleChildScrollView(
+            child: Center(
+      child: Column(
+        children: [
+          Inicio(context),
+          ContenedorImages(
+              'assets/images/CuerpoHombre/CamisaHombre.png',
+              double.infinity,
+              MediaQuery.of(context).size.width * 0.45,
+              context,
+              "1",
+              "Camisa",
+              0,
+              0,
+              0,
+              0,
+              Alignment.bottomCenter),
+          ContenedorImages(
+              'assets/images/CuerpoHombre/PantalonHombre.png',
+              double.infinity,
+              MediaQuery.of(context).size.width * 0.45,
+              context,
+              "2",
+              "Pantalon",
+              0,
+              0,
+              0,
+              0,
+              Alignment.bottomCenter),
+          ContenedorImages(
+              'assets/images/CuerpoHombre/ZapatosHombre.png',
+              double.infinity,
+              MediaQuery.of(context).size.width * 0.15,
+              context,
+              "3",
+              "Zapatos",
+              0,
+              0,
+              0,
+              0,
+              Alignment.bottomCenter),
+          Final('assets/images/CuerpoHombre/FinalHombre.png', double.infinity,
+              MediaQuery.of(context).size.width * 0.40)
+        ],
+      ),
+    )));
   }
 
-  Widget ContenedorImages(String ruta, double Width, double Height) {
+  Widget Inicio(context) {
     return Container(
+      width: double.infinity,
+      height: MediaQuery.of(context).size.width * 0.9,
+      padding: EdgeInsets.symmetric(horizontal: 20),
+      decoration: BoxDecoration(
+          image: DecorationImage(
+              image: AssetImage("assets/images/CuerpoHombre/CabezaHombre.png"),
+              fit: BoxFit.cover)),
+      child: Column(children: <Widget>[
+        //Titulo Y Regresar
+        SingleChildScrollView(
+            child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+              SizedBox(
+                height: MediaQuery.of(context).size.width * 0.15,
+              ),
+              Regresar_(context),
+              SizedBox(
+                height: MediaQuery.of(context).size.width * 0.05,
+              ),
+              Titulo(),
+            ])),
+      ]),
+    );
+  }
+
+  Widget Final(String ruta, double Width, double Height) {
+    return SingleChildScrollView(
+        child: Container(
       width: Width,
       height: Height,
       decoration: BoxDecoration(
           image: DecorationImage(image: AssetImage(ruta), fit: BoxFit.cover)),
-    );
+      child: Column(
+        children: [
+          Nombre_Usuario(),
+          Fecha(),
+          SizedBox(
+            height: 20,
+          ),
+          ModalComentario()
+        ],
+      ),
+    ));
+  }
+
+  Widget ContenedorImages(
+      String ruta,
+      double Width,
+      double Height,
+      context,
+      String Numero,
+      String Label,
+      double Left,
+      double Right,
+      double Top,
+      double Bottom,
+      Alignment Tipo) {
+    return SingleChildScrollView(
+        child: Container(
+      width: Width,
+      height: Height,
+      decoration: BoxDecoration(
+          image: DecorationImage(image: AssetImage(ruta), fit: BoxFit.cover)),
+      child: Container(
+        alignment: Tipo,
+        child: UserData(Label, Numero, Left, Right, Top, Bottom),
+      ),
+    ));
   }
 
   Widget Regresar_(context) {
@@ -128,7 +208,10 @@ class RevisionUniformeHombre extends StatelessWidget {
             border: Border(
                 bottom: BorderSide(width: 1.5, color: HexColor("#C4C4C4"))),
           ),
-          child: Text("Laborando: " + TiempoLaborando().ObtenerTiempoLaborando(this.Tiempo.toString()),
+          child: Text(
+              "Laborando: " +
+                  TiempoLaborando()
+                      .ObtenerTiempoLaborando(this.Tiempo.toString()),
               style: TextStyle(
                   color: HexColor('#85868E'),
                   fontSize: 20,
@@ -156,5 +239,4 @@ class RevisionUniformeHombre extends StatelessWidget {
       ],
     );
   }
-
 }

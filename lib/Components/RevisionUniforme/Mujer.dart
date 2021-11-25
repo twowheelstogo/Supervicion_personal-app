@@ -25,12 +25,30 @@ class RevisionUniformeMujer extends StatelessWidget {
     );
   }
 
-  @override
+    @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: Column(
       children: [
-         SizedBox(
+
+        //Titulo Y Regresar
+        Container(
+          width: double.infinity,
+          height: 350,
+          padding: EdgeInsets.symmetric(horizontal: 20),
+          decoration: BoxDecoration(
+        image: DecorationImage(
+            image: AssetImage(
+                    "assets/images/CuerpoMujer/PeloMujer.png"
+                    ),
+            fit: BoxFit.cover
+        )
+          ),          
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                SizedBox(
                   height: MediaQuery.of(context).size.width * 0.15,
                 ),
                 Regresar_(context),
@@ -38,6 +56,8 @@ class RevisionUniformeMujer extends StatelessWidget {
                   height: MediaQuery.of(context).size.width * 0.05,
                 ),
                 Titulo(),
+              ]))    
+        )     
       ],
     ));
   }
