@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:getwidget/getwidget.dart';
-import 'package:control_empleados/Components/RevisionUniforme/Index.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:control_empleados/Components/MainPage/Metodos.dart';
 import 'package:control_empleados/Components/RevisionArea/index.dart';
@@ -29,32 +28,33 @@ class Cartas extends StatelessWidget {
   Widget build(BuildContext context) {
     void CalificarUsuario(int Opcion) {
       if (Opcion == 1) {
-
-         if (this.Genero == 'Masculino') {
-      Navigator.push<void>(
-          context,
-          MaterialPageRoute<void>(
-            builder: (BuildContext context) => RevisionUniformeHombre(
-                this.NombreUsuario,
-                this.Agencia,
-                this.UrlFoto,
-                this.Genero,
-                this.now,this.Tiempo),
-          ),
-        );
-    } else {
-      Navigator.push<void>(
-          context,
-          MaterialPageRoute<void>(
-            builder: (BuildContext context) => RevisionUniformeMujer(
-                this.NombreUsuario,
-                this.Agencia,
-                this.UrlFoto,
-                this.Genero,
-                this.now,this.Tiempo),
-          ),
-        );
-    }        
+        if (this.Genero == 'Masculino') {
+          Navigator.push<void>(
+            context,
+            MaterialPageRoute<void>(
+              builder: (BuildContext context) => RevisionUniformeHombre(
+                  this.NombreUsuario,
+                  this.Agencia,
+                  this.UrlFoto,
+                  this.Genero,
+                  this.now,
+                  this.Tiempo),
+            ),
+          );
+        } else {
+          Navigator.push<void>(
+            context,
+            MaterialPageRoute<void>(
+              builder: (BuildContext context) => RevisionUniformeMujer(
+                  this.NombreUsuario,
+                  this.Agencia,
+                  this.UrlFoto,
+                  this.Genero,
+                  this.now,
+                  this.Tiempo),
+            ),
+          );
+        }
       } else {
         Navigator.push<void>(
           context,

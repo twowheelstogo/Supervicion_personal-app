@@ -13,7 +13,9 @@ class UserData extends StatefulWidget {
   final double Right;
   final double Top;
   final double Bottom;
-  const UserData(this.Tipo, this.Numero,this.Left,this.Right,this.Top,this.Bottom);
+  final String Color;
+  const UserData(this.Tipo, this.Numero, this.Left, this.Right, this.Top,
+      this.Bottom, this.Color);
 
   @override
   ModalCalificacion createState() => ModalCalificacion();
@@ -61,32 +63,36 @@ class ModalCalificacion extends State<UserData> {
           });
     }
 
-    return (Column(children: [       
-              Padding(
-              padding: EdgeInsets.only(left: widget.Left,right: widget.Right,top: widget.Top,bottom: widget.Bottom ),
-              child: 
-              ButtonTheme(
-                minWidth: 10.0,
-                height: 45.0,
-                child: RaisedButton(
-                  textColor: HexColor('#FFFFFF'),
-                  color: HexColor("#85868E"),
-                  child: Text(
-                    widget.Numero.toString(),
-                    style: TextStyle(
-                      fontSize: 28,
-                      fontFamily: 'Lato',
-                      color: HexColor("#FFFFFF"),
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                  onPressed: () => _showModalBottomSheet(context),
-                  shape: new RoundedRectangleBorder(
-                    borderRadius: new BorderRadius.circular(40.0),
-                  ),
-                ),
-              ),)
-                    
+    return (Column(children: [
+      Padding(
+        padding: EdgeInsets.only(
+            left: widget.Left,
+            right: widget.Right,
+            top: widget.Top,
+            bottom: widget.Bottom),
+        child: ButtonTheme(
+          minWidth: 10.0,
+          height: 45.0,
+          child: FlatButton(
+            //textColor: HexColor('#FFFFFF'),
+            //color: HexColor("#85868E"),
+            child: Text(
+              widget.Numero.toString(),
+              style: TextStyle(
+                fontSize: 20,
+                fontFamily: 'Lato',
+                color: HexColor(widget.Color),
+                decoration: TextDecoration.underline,
+                fontWeight: FontWeight.w400,
+              ),
+            ),
+            onPressed: () => _showModalBottomSheet(context),
+            shape: new RoundedRectangleBorder(
+              borderRadius: new BorderRadius.circular(40.0),
+            ),
+          ),
+        ),
+      )
     ]));
   }
 }
