@@ -3,6 +3,7 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:control_empleados/Components/LogIn/Metodos.dart';
 import 'package:control_empleados/Components/MainPage/Index.dart';
 import 'package:control_empleados/Components/Constants/Index.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -20,9 +21,26 @@ class LoginPageState_ extends State<LoginPage> {
   void initState() {
     username.text = ""; //innitail value of text field
     password.text = "";
+
+    main();
+
     super.initState();
   }
-
+  
+  Future<void> main() async {
+    WidgetsFlutterBinding.ensureInitialized();
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    var NombreUsuario = prefs.getString('usuario');
+    if (NombreUsuario != null) {
+      Navigator.push<void>(
+        context,
+        MaterialPageRoute<void>(
+          builder: (BuildContext context) => MainPage(),
+        ),
+      );
+    }
+  }
+   
   void Imprimir() {
     bandera = Autenticacion().Autenticar(username.text, password.text);
     print(bandera);
@@ -69,18 +87,22 @@ class LoginPageState_ extends State<LoginPage> {
                             child: TextField(
                                 controller: username,
                                 cursorColor: HexColor(ColorPrincipal),
-                                style: TextStyle(color: HexColor(ColorPrincipal)),
+                                style:
+                                    TextStyle(color: HexColor(ColorPrincipal)),
                                 decoration: InputDecoration(
                                   focusedBorder: UnderlineInputBorder(
                                     borderSide: BorderSide(
-                                        color: HexColor(ColorPrincipal), width: 4.5),
+                                        color: HexColor(ColorPrincipal),
+                                        width: 4.5),
                                   ),
                                   enabledBorder: UnderlineInputBorder(
                                     borderSide: BorderSide(
-                                        color: HexColor(ColorPrincipal), width: 4.5),
+                                        color: HexColor(ColorPrincipal),
+                                        width: 4.5),
                                   ),
                                   labelStyle: TextStyle(
-                                      color: HexColor(ColorPrincipal), fontSize: 22),
+                                      color: HexColor(ColorPrincipal),
+                                      fontSize: 22),
                                   labelText: "Usuario",
                                   prefixIcon: Icon(Icons.account_circle,
                                       color: HexColor(
@@ -97,14 +119,17 @@ class LoginPageState_ extends State<LoginPage> {
                               decoration: InputDecoration(
                                   focusedBorder: UnderlineInputBorder(
                                     borderSide: BorderSide(
-                                        color: HexColor(ColorPrincipal), width: 4.5),
+                                        color: HexColor(ColorPrincipal),
+                                        width: 4.5),
                                   ),
                                   enabledBorder: UnderlineInputBorder(
                                     borderSide: BorderSide(
-                                        color: HexColor(ColorPrincipal), width: 4.5),
+                                        color: HexColor(ColorPrincipal),
+                                        width: 4.5),
                                   ),
                                   labelStyle: TextStyle(
-                                      color: HexColor(ColorPrincipal), fontSize: 22),
+                                      color: HexColor(ColorPrincipal),
+                                      fontSize: 22),
                                   labelText: "Contraseña",
                                   prefixIcon: Icon(Icons.lock,
                                       color: HexColor(ColorPrincipal))),

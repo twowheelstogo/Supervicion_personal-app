@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:control_empleados/Components/MainPage/Presentacion.dart';
-import 'package:control_empleados/Components/MainPage/Mensaje.dart';
 import 'package:control_empleados/Components/MainPage/Cartas.dart';
 import 'package:control_empleados/Components/MainPage/Metodos.dart';
 import 'package:intl/intl.dart';

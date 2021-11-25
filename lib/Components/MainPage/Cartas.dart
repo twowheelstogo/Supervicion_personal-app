@@ -7,6 +7,9 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:control_empleados/Components/MainPage/Metodos.dart';
 import 'package:control_empleados/Components/RevisionArea/index.dart';
 
+import 'package:control_empleados/Components/RevisionUniforme/Hombre.dart';
+import 'package:control_empleados/Components/RevisionUniforme/Mujer.dart';
+
 class Cartas extends StatelessWidget {
   final String NombreUsuario;
   final String Agencia;
@@ -26,17 +29,32 @@ class Cartas extends StatelessWidget {
   Widget build(BuildContext context) {
     void CalificarUsuario(int Opcion) {
       if (Opcion == 1) {
-        Navigator.push<void>(
+
+         if (this.Genero == 'Masculino') {
+      Navigator.push<void>(
           context,
           MaterialPageRoute<void>(
-            builder: (BuildContext context) => RevisionUniforme(
+            builder: (BuildContext context) => RevisionUniformeHombre(
                 this.NombreUsuario,
                 this.Agencia,
                 this.UrlFoto,
                 this.Genero,
-                this.now),
+                this.now,this.Tiempo),
           ),
         );
+    } else {
+      Navigator.push<void>(
+          context,
+          MaterialPageRoute<void>(
+            builder: (BuildContext context) => RevisionUniformeMujer(
+                this.NombreUsuario,
+                this.Agencia,
+                this.UrlFoto,
+                this.Genero,
+                this.now,this.Tiempo),
+          ),
+        );
+    }        
       } else {
         Navigator.push<void>(
           context,
@@ -123,23 +141,23 @@ class Cartas extends StatelessWidget {
                                 fontSize: 20,
                                 fontWeight: FontWeight.w700)),
                       ),
-                      Container(
-                        margin: const EdgeInsets.only(top: 10),
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                          border: Border(
-                              bottom: BorderSide(
-                                  width: 1.5, color: HexColor("#C4C4C4"))),
-                        ),
-                        child: Text(
-                            "Laborando: " +
-                                TiempoLaborando().ObtenerTiempoLaborando(
-                                    this.Tiempo.toString()),
-                            style: TextStyle(
-                                color: HexColor('#85868E'),
-                                fontSize: 20,
-                                fontWeight: FontWeight.w700)),
-                      ),
+                      // Container(
+                      //   margin: const EdgeInsets.only(top: 10),
+                      //   width: double.infinity,
+                      //   decoration: BoxDecoration(
+                      //     border: Border(
+                      //         bottom: BorderSide(
+                      //             width: 1.5, color: HexColor("#C4C4C4"))),
+                      //   ),
+                      //   child: Text(
+                      //       "Laborando: " +
+                      //           TiempoLaborando().ObtenerTiempoLaborando(
+                      //               this.Tiempo.toString()),
+                      //       style: TextStyle(
+                      //           color: HexColor('#85868E'),
+                      //           fontSize: 20,
+                      //           fontWeight: FontWeight.w700)),
+                      // ),
                     ],
                   ),
                   trailing: userIcon(this.UrlFoto)),

@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:control_empleados/Components/MainPage/Index.dart';
-import 'package:control_empleados/Components/RevisionUniforme/Metodos.dart';
-import 'package:control_empleados/Components/RevisionUniforme/ModalComentario.dart';
-import 'package:control_empleados/Components/RevisionUniforme/ModalCalificacion.dart';
 import 'package:control_empleados/Components/MainPage/Metodos.dart';
+import 'package:control_empleados/Components/MainPage/Index.dart';
 
-class RevisionUniforme extends StatelessWidget {
+class RevisionUniformeHombre extends StatelessWidget {
   final String NombreUsuario;
   final String Agencia;
   final String UrlFoto;
@@ -15,20 +11,10 @@ class RevisionUniforme extends StatelessWidget {
   final String now;
   final DateTime Tiempo;
 
-  const RevisionUniforme(
-      this.NombreUsuario, this.Agencia, this.UrlFoto, this.Genero, this.now,this.Tiempo,
+  const RevisionUniformeHombre(this.NombreUsuario, this.Agencia, this.UrlFoto,
+      this.Genero, this.now, this.Tiempo,
       {Key? key})
-      : super(key: key);
-
-  String GetUrl() {
-    String url = "";
-    if (this.Genero == 'Masculino') {
-      url = "assets/images/Hombre.png";
-    } else {
-      url = "assets/images/Mujer.png";
-    }
-    return url;
-  }
+      : super(key: key);  
 
   void Regresar(context) {
     Navigator.push<void>(
@@ -42,21 +28,9 @@ class RevisionUniforme extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Center(
-            child: Container(
-      constraints: BoxConstraints.expand(),
-      decoration: BoxDecoration(
-          image:
-              DecorationImage(image: AssetImage(GetUrl()), fit: BoxFit.cover)),
-      child: Container(
-          width: double.infinity,
-          height: double.infinity,
-          padding: EdgeInsets.symmetric(horizontal: 20),
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                SizedBox(
+        body: Column(
+      children: [
+         SizedBox(
                   height: MediaQuery.of(context).size.width * 0.15,
                 ),
                 Regresar_(context),
@@ -64,39 +38,17 @@ class RevisionUniforme extends StatelessWidget {
                   height: MediaQuery.of(context).size.width * 0.05,
                 ),
                 Titulo(),
-                //this.Left,this.Right,this.Top,this.Bottom
-                Stack(children: [
-            Positioned(                            
-              child: 
-                UserData('Camisa', '1', 0, 80,
-                      50, 0),                      
-            )]),                
-                Container(
-                  alignment: Alignment.bottomRight,
-                  child: UserData('Pantalon', '2', 0, 50,
-                      MediaQuery.of(context).size.width * 0.40, 0),
-                ),                
-                Container(
-                  alignment: Alignment.bottomLeft,
-                  child: UserData('Zapatos', '3', 0, 50,
-                      MediaQuery.of(context).size.width * 0.40, 0),
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.width * 0.20,
-                ),
-                Nombre_Usuario(),
-                Fecha(),
-                SizedBox(
-                  height: 10,
-                ),
-                ModalComentario(),
-                SizedBox(
-                  height: 10,
-                ),
-              ],
-            ),
-          )),
-    )));
+      ],
+    ));
+  }
+
+  Widget ContenedorImages(String ruta, double Width, double Height) {
+    return Container(
+      width: Width,
+      height: Height,
+      decoration: BoxDecoration(
+          image: DecorationImage(image: AssetImage(ruta), fit: BoxFit.cover)),
+    );
   }
 
   Widget Regresar_(context) {
@@ -184,4 +136,5 @@ class RevisionUniforme extends StatelessWidget {
       ],
     );
   }
+
 }

@@ -69,6 +69,17 @@ flutter:
     - assets/images/Mujer.png
     - assets/images/R.jpg
     - assets/images/TalenHub.PNG
+    - assets/images/CuerpoHombre/CabezaHombre.png
+    - assets/images/CuerpoHombre/CamisaHombre.png
+    - assets/images/CuerpoHombre/FinalHombre.png
+    - assets/images/CuerpoHombre/PantalonHombre.png
+    - assets/images/CuerpoHombre/ZapatosHombre.png
+    - assets/images/CuerpoMujer/CamisaMujer.png
+    - assets/images/CuerpoMujer/CaraMujer.png
+    - assets/images/CuerpoMujer/FinalMujer.png
+    - assets/images/CuerpoMujer/PantalonMujer.png
+    - assets/images/CuerpoMujer/PeloMujer.png
+    - assets/images/CuerpoMujer/ZapatosMujer.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

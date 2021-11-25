@@ -61,10 +61,11 @@ class ModalCalificacion extends State<UserData> {
           });
     }
 
-    return (Column(children: [
-       Stack(children: [
-            Positioned(              
-              child: ButtonTheme(
+    return (Column(children: [       
+              Padding(
+              padding: EdgeInsets.only(left: widget.Left,right: widget.Right,top: widget.Top,bottom: widget.Bottom ),
+              child: 
+              ButtonTheme(
                 minWidth: 10.0,
                 height: 45.0,
                 child: RaisedButton(
@@ -84,9 +85,8 @@ class ModalCalificacion extends State<UserData> {
                     borderRadius: new BorderRadius.circular(40.0),
                   ),
                 ),
-              )
-              )
-          ],)              
+              ),)
+                    
     ]));
   }
 }
