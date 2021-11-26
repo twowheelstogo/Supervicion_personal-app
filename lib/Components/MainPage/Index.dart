@@ -42,6 +42,7 @@ class MainPage_ extends State<MainPage> {
   List<Empleado> ListaEmpleados = [];
   String DPI = "";
   bool Loading = false;
+  String ID_AIRTABLE = "";
 
   void initState() {
     UsuarioBusqueda.text = ""; //innitail value of text field
@@ -51,14 +52,22 @@ class MainPage_ extends State<MainPage> {
 
   Future<String> getDPI() async {
     final prefs = await SharedPreferences.getInstance();
-    String Nombre = '';
+    String DPI = '';
     final res = prefs.getString('DPI');
-    Nombre = '$res ';
-    return Nombre;
+    DPI = '$res';
+    return DPI;
   }
 
-  Future<List<Empleado>> getList() async {
-    final lst = await Principal().DataEmpleados('1');
+  Future<String> getID() async {
+    final prefs = await SharedPreferences.getInstance();
+    String ID = '';
+    final res = prefs.getString('IdAIRTABLE');
+    ID = '$res';
+    return ID;
+  }
+
+  Future<List<Empleado>> getList(String DPI) async {
+    final lst = await Principal().DataEmpleados(DPI);
     List<Empleado> newlst = [];
     int contador = 0;
     if (lst.length > 0) {
@@ -88,13 +97,17 @@ class MainPage_ extends State<MainPage> {
           Loading = val;
         }));
 
-    getDPI().then((val) => setState(() {
-          DPI = val;
+    getID().then((val) => setState(() {
+          ID_AIRTABLE = val;
         }));
 
-    getList().then((val) => setState(() {
-          ListaEmpleados = val;
-          Loading = false;
+    getDPI().then((val) => setState(() {
+          DPI = val;
+
+          getList(val).then((val2) => setState(() {
+                ListaEmpleados = val2;
+                Loading = false;
+              }));
         }));
   }
 
@@ -132,7 +145,7 @@ class MainPage_ extends State<MainPage> {
           for (var i in Principal().ListaFiltrada(ListaEmpleados,
               UsuarioBusqueda.text.toString(), RegionBusqueda.text.toString()))
             Cartas(i.Nombre, i.Agencia, i.urlFoto, i.Genero, now, i.Estado,
-                i.Tiempo, i.Region)
+                i.Tiempo, i.Region, ID_AIRTABLE)
         ],
       )),
       inAsyncCall: Loading,

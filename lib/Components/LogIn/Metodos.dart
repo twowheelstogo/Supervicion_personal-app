@@ -5,40 +5,14 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:intl/intl.dart';
 
-class User with ChangeNotifier {
-  String Nombre;
-  String DPI;
-  List BANRURAL_CATALOGOS_AGENCIA;
-  List BITACORA_EMPLEADOS;
-  List FECHA_INGRESO;
-  List No_DOCUMENTO;
-  List TMP_MACROREGION;
-  List TMP_REGION;
-  List NOMBRE_AGENCIA;
-  List STATUS_EMPLEADOS;
-  List NOMBRES_EMPLEADOS;
-
-  User(
-      {required this.Nombre,
-      required this.DPI,
-      required this.BANRURAL_CATALOGOS_AGENCIA,
-      required this.BITACORA_EMPLEADOS,
-      required this.FECHA_INGRESO,
-      required this.No_DOCUMENTO,
-      required this.TMP_MACROREGION,
-      required this.TMP_REGION,
-      required this.NOMBRE_AGENCIA,
-      required this.STATUS_EMPLEADOS,
-      required this.NOMBRES_EMPLEADOS});
-}
-
 class Autenticacion {
-  void storage_(usuario, id) async {
+  void storage_(usuario, id, ID_AIRTABLE) async {
     // obtain shared preferences
     final prefs = await SharedPreferences.getInstance();
     // set value
     prefs.setString('usuario', usuario);
     prefs.setString('DPI', id);
+    prefs.setString('IdAIRTABLE', ID_AIRTABLE);
   }
 
   // ignore: non_constant_identifier_names
@@ -52,9 +26,9 @@ class Autenticacion {
     if (Response.statusCode == 200) {
       if (Decoded["records"].length > 0) {
         var id = Decoded["records"][0]["fields"]["DPI"];
-        print(id);
         var Nombre = Decoded["records"][0]["fields"]["Nombre"];
-        storage_(Nombre.toString(), id.toString());
+        var ID_AIRTABLE = Decoded["records"][0]["id"];
+        storage_(Nombre.toString(), id.toString(), ID_AIRTABLE.toString());
       } else {
         bandera = true;
         Mensaje = "Credenciales incorrectas.";

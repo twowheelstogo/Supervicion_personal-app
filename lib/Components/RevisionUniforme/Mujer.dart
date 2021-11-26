@@ -12,9 +12,10 @@ class RevisionUniformeMujer extends StatelessWidget {
   final String Genero;
   final String now;
   final DateTime Tiempo;
+  final String ID_AIRTABLE;
 
   const RevisionUniformeMujer(this.NombreUsuario, this.Agencia, this.UrlFoto,
-      this.Genero, this.now, this.Tiempo,
+      this.Genero, this.now, this.Tiempo, this.ID_AIRTABLE,
       {Key? key})
       : super(key: key);
 

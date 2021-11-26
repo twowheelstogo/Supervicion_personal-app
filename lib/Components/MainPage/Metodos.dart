@@ -144,7 +144,7 @@ class Principal {
 
   String Convertir(String entrada) {
     String tmp = entrada.replaceAll('  ', ' ');
-    print(tmp);
+    //print(tmp);
     var tmp2 = tmp.split(' ');
     String tmp3 = "";
     for (var i in tmp2) {
