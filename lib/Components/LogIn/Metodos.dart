@@ -38,9 +38,7 @@ class Autenticacion {
     final prefs = await SharedPreferences.getInstance();
     // set value
     prefs.setString('usuario', usuario);
-    prefs.setString('id', id);
-    String now = DateFormat("yyyy-MM-dd").format(DateTime.now());
-    prefs.setString('UltimaHora', now.toString());
+    prefs.setString('DPI', id);
   }
 
   // ignore: non_constant_identifier_names
@@ -54,6 +52,7 @@ class Autenticacion {
     if (Response.statusCode == 200) {
       if (Decoded["records"].length > 0) {
         var id = Decoded["records"][0]["fields"]["DPI"];
+        print(id);
         var Nombre = Decoded["records"][0]["fields"]["Nombre"];
         storage_(Nombre.toString(), id.toString());
       } else {
