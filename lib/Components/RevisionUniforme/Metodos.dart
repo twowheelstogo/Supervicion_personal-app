@@ -100,6 +100,7 @@ class Comentarios {
       "COLABORADORES": [COLABORADORES],
       "LATITUD": position.latitude,
       "LONGITUD": position.longitude,
+      "TIPO": "Uniforme"
     };
 
     final bodyEncoded = json.encode({

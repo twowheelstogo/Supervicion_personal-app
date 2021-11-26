@@ -28,8 +28,8 @@ class LogOut_ extends State<LogOut> {
     SharedPreferences prefs;
     prefs = await SharedPreferences.getInstance();
     prefs.remove("usuario");
-    prefs.remove("UltimaHora");
-    prefs.remove("id");
+    prefs.remove("IdAIRTABLE");
+    prefs.remove("DPI");
   }
 
   String NombreUsuario = "";

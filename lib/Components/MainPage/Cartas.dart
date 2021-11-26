@@ -74,8 +74,15 @@ class Cartas extends StatelessWidget {
         Navigator.push<void>(
           context,
           MaterialPageRoute<void>(
-            builder: (BuildContext context) =>
-                RevisionArea(this.NombreUsuario, this.Agencia, this.now),
+            builder: (BuildContext context) => RevisionArea(
+                this.NombreUsuario,
+                this.Agencia,
+                this.UrlFoto,
+                this.Genero,
+                this.now,
+                this.Tiempo,
+                this.ID_EMPLEADO,
+                this.ID_AIRTABLE),
           ),
         );
       }

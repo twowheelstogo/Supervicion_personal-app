@@ -88,6 +88,10 @@ flutter:
     - assets/images/CuerpoMujer/PantalonMujer.png
     - assets/images/CuerpoMujer/PeloMujer.png
     - assets/images/CuerpoMujer/ZapatosMujer.png
+    - assets/images/AreaTrabajo/baños.png
+    - assets/images/AreaTrabajo/piso.png
+    - assets/images/AreaTrabajo/ventanas.png
+    - assets/images/AreaTrabajo/muebles.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
