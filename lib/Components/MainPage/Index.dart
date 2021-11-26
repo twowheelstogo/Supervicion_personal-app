@@ -16,6 +16,7 @@ class Empleado with ChangeNotifier {
   final String Estado;
   final DateTime Tiempo;
   final String Region;
+  final String ID_EMPLEADO;
 
   Empleado(
       {required this.Nombre,
@@ -24,7 +25,8 @@ class Empleado with ChangeNotifier {
       required this.Genero,
       required this.Estado,
       required this.Tiempo,
-      required this.Region});
+      required this.Region,
+      required this.ID_EMPLEADO});
 }
 
 class MainPage extends StatefulWidget {
@@ -80,7 +82,8 @@ class MainPage_ extends State<MainPage> {
             Genero: i.Genero,
             Estado: i.Estado,
             Tiempo: i.Tiempo,
-            Region: i.Region));
+            Region: i.Region,
+            ID_EMPLEADO: i.ID_EMPLEADO));
       }
       contador = contador + 1;
     }
@@ -145,7 +148,7 @@ class MainPage_ extends State<MainPage> {
           for (var i in Principal().ListaFiltrada(ListaEmpleados,
               UsuarioBusqueda.text.toString(), RegionBusqueda.text.toString()))
             Cartas(i.Nombre, i.Agencia, i.urlFoto, i.Genero, now, i.Estado,
-                i.Tiempo, i.Region, ID_AIRTABLE)
+                i.Tiempo, i.Region, i.ID_EMPLEADO, ID_AIRTABLE)
         ],
       )),
       inAsyncCall: Loading,
@@ -177,23 +180,23 @@ class MainPage_ extends State<MainPage> {
                         onChanged: (text) => Principal()
                             .storage_(Llave, controlador.text.toString()),
                         controller: controlador,
-                        cursorColor: HexColor(ColorPrincipal),
-                        style: TextStyle(color: HexColor(ColorPrincipal)),
+                        cursorColor: HexColor("#C4C4C4"),
+                        style: TextStyle(color: HexColor("#C4C4C4")),
                         decoration: InputDecoration(
                           focusedBorder: UnderlineInputBorder(
                             borderSide: BorderSide(
-                                color: HexColor(ColorPrincipal), width: 4.5),
+                                color: HexColor("#C4C4C4"), width: 4.5),
                           ),
                           enabledBorder: UnderlineInputBorder(
                             borderSide: BorderSide(
-                                color: HexColor(ColorPrincipal), width: 4.5),
+                                color: HexColor("#C4C4C4"), width: 4.5),
                           ),
                           labelStyle: TextStyle(
-                              color: HexColor(ColorPrincipal), fontSize: 22),
+                              color: HexColor("#FFFFFF"), fontSize: 22),
                           labelText: Label,
                           prefixIcon: Icon(Icons.manage_search_sharp,
-                              color: HexColor(
-                                  ColorPrincipal)), //icon at head of input
+                              color:
+                                  HexColor("#FFFFFF")), //icon at head of input
                         )),
                   ),
                 ],

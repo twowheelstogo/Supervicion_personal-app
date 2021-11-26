@@ -12,6 +12,7 @@ class Empleado with ChangeNotifier {
   final String Estado;
   final DateTime Tiempo;
   final String Region;
+  final String ID_EMPLEADO;
 
   Empleado(
       {required this.Nombre,
@@ -20,7 +21,8 @@ class Empleado with ChangeNotifier {
       required this.Genero,
       required this.Estado,
       required this.Tiempo,
-      required this.Region});
+      required this.Region,
+      required this.ID_EMPLEADO});
 }
 
 class Principal {
@@ -34,7 +36,8 @@ class Principal {
           Genero: i.Genero,
           Estado: i.Estado,
           Tiempo: i.Tiempo,
-          Region: i.Region));
+          Region: i.Region,
+          ID_EMPLEADO: i.ID_EMPLEADO));
     }
     return tmp;
   }
@@ -107,7 +110,8 @@ class Principal {
                   Tiempo:
                       DateTime.utc(parseDt.year, parseDt.month, parseDt.day),
                   Region:
-                      Convertir(Decoded["records"][0]["fields"]["TMP_REGION"][Contador2].toString())));
+                      Convertir(Decoded["records"][0]["fields"]["TMP_REGION"][Contador2].toString()),
+                  ID_EMPLEADO: Decoded["records"][0]["fields"]["EMPLEADOS"][Contador3]));
               Contador = Contador + 1;
             }
             Contador3 = Contador3 + 1;

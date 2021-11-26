@@ -14,8 +14,24 @@ class UserData extends StatefulWidget {
   final double Top;
   final double Bottom;
   final String Color;
-  const UserData(this.Tipo, this.Numero, this.Left, this.Right, this.Top,
-      this.Bottom, this.Color);
+
+  final String COLABORADORES;
+  final String Encargado;
+  final String Latitud;
+  final String Longitud;
+
+  const UserData(
+      this.Tipo,
+      this.Numero,
+      this.Left,
+      this.Right,
+      this.Top,
+      this.Bottom,
+      this.Color,
+      this.COLABORADORES,
+      this.Encargado,
+      this.Latitud,
+      this.Longitud);
 
   @override
   ModalCalificacion createState() => ModalCalificacion();
@@ -52,8 +68,14 @@ class ModalCalificacion extends State<UserData> {
                       children: [
                         Padding(
                             padding: const EdgeInsets.only(bottom: 25.0),
-                            child:
-                                Center(child: MySliderApp(val, widget.Tipo))),
+                            child: Center(
+                                child: MySliderApp(
+                                    widget.Tipo,
+                                    widget.COLABORADORES,
+                                    widget.Encargado,
+                                    widget.Latitud,
+                                    widget.Longitud,
+                                    val))),
                       ],
                     )
                   ],

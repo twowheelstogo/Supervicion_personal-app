@@ -12,10 +12,11 @@ class RevisionUniformeHombre extends StatelessWidget {
   final String Genero;
   final String now;
   final DateTime Tiempo;
+  final String ID_EMPLEADO;
   final String ID_AIRTABLE;
 
   const RevisionUniformeHombre(this.NombreUsuario, this.Agencia, this.UrlFoto,
-      this.Genero, this.now, this.Tiempo, this.ID_AIRTABLE,
+      this.Genero, this.now, this.Tiempo, this.ID_EMPLEADO, this.ID_AIRTABLE,
       {Key? key})
       : super(key: key);
 
@@ -31,52 +32,53 @@ class RevisionUniformeHombre extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: SingleChildScrollView(
-            child: Center(
-      child: Column(
-        children: [
-          Inicio(context),
-          ContenedorImages(
-              'assets/images/CuerpoHombre/CamisaHombre.png',
-              double.infinity,
-              MediaQuery.of(context).size.width * 0.45,
-              context,
-              "Camisa",
-              "Camisa",
-              0,
-              MediaQuery.of(context).size.width * 0.06,
-              MediaQuery.of(context).size.width * 0.1,
-              0,
-              Alignment.bottomRight),
-          ContenedorImages(
-              'assets/images/CuerpoHombre/PantalonHombre.png',
-              double.infinity,
-              MediaQuery.of(context).size.width * 0.45,
-              context,
-              "Pantalon",
-              "Pantalon",
-              MediaQuery.of(context).size.width * 0.1,
-              0,
-              MediaQuery.of(context).size.width * 0.1,
-              0,
-              Alignment.bottomLeft),
-          ContenedorImages(
-              'assets/images/CuerpoHombre/ZapatosHombre.png',
-              double.infinity,
-              MediaQuery.of(context).size.width * 0.16,
-              context,
-              "Zapatos",
-              "Zapatos",
-              0,
-              MediaQuery.of(context).size.width * 0.1,
-              0,
-              0,
-              Alignment.bottomRight),
-          Final('assets/images/CuerpoHombre/FinalHombre.png', double.infinity,
-              MediaQuery.of(context).size.width * 0.40)
-        ],
-      ),
-    )));
+      body: SingleChildScrollView(
+          child: Center(
+        child: Column(
+          children: [
+            Inicio(context),
+            ContenedorImages(
+                'assets/images/CuerpoHombre/CamisaHombre.png',
+                double.infinity,
+                MediaQuery.of(context).size.width * 0.45,
+                context,
+                "Camisa",
+                "Camisa",
+                0,
+                MediaQuery.of(context).size.width * 0.06,
+                MediaQuery.of(context).size.width * 0.1,
+                0,
+                Alignment.bottomRight),
+            ContenedorImages(
+                'assets/images/CuerpoHombre/PantalonHombre.png',
+                double.infinity,
+                MediaQuery.of(context).size.width * 0.45,
+                context,
+                "Pantalon",
+                "Pantalon",
+                MediaQuery.of(context).size.width * 0.1,
+                0,
+                MediaQuery.of(context).size.width * 0.1,
+                0,
+                Alignment.bottomLeft),
+            ContenedorImages(
+                'assets/images/CuerpoHombre/ZapatosHombre.png',
+                double.infinity,
+                MediaQuery.of(context).size.width * 0.16,
+                context,
+                "Zapatos",
+                "Zapatos",
+                0,
+                MediaQuery.of(context).size.width * 0.1,
+                0,
+                0,
+                Alignment.bottomRight),
+            Final('assets/images/CuerpoHombre/FinalHombre.png', double.infinity,
+                MediaQuery.of(context).size.width * 0.40, context)
+          ],
+        ),
+      )),
+    );
   }
 
   Widget Inicio(context) {
@@ -107,21 +109,23 @@ class RevisionUniformeHombre extends StatelessWidget {
     );
   }
 
-  Widget Final(String ruta, double Width, double Height) {
+  Widget Final(String ruta, double Width, double Height, context) {
     return SingleChildScrollView(
         child: Container(
       width: Width,
-      height: Height,
       decoration: BoxDecoration(
           image: DecorationImage(image: AssetImage(ruta), fit: BoxFit.cover)),
       child: Column(
         children: [
-          Nombre_Usuario(),
-          Fecha(),
+          Nombre_Usuario(context),
+          Fecha(context),
           SizedBox(
             height: 20,
           ),
-          ModalComentario()
+          ModalComentario(),
+          SizedBox(
+            height: 20,
+          ),
         ],
       ),
     ));
@@ -147,7 +151,8 @@ class RevisionUniformeHombre extends StatelessWidget {
           image: DecorationImage(image: AssetImage(ruta), fit: BoxFit.cover)),
       child: Container(
         alignment: Tipo,
-        child: UserData(Label, Numero, Left, Right, Top, Bottom, "#1f4497"),
+        child: UserData(Label, Numero, Left, Right, Top, Bottom, "#1f4497",
+            this.ID_EMPLEADO, this.ID_AIRTABLE, '0', '0'),
       ),
     ));
   }
@@ -200,10 +205,11 @@ class RevisionUniformeHombre extends StatelessWidget {
     );
   }
 
-  Widget Fecha() {
+  Widget Fecha(context) {
     return Column(
       children: [
         Container(
+          width: MediaQuery.of(context).size.width * 0.7,
           margin: const EdgeInsets.only(top: 10),
           decoration: BoxDecoration(
             border: Border(
@@ -222,10 +228,11 @@ class RevisionUniformeHombre extends StatelessWidget {
     );
   }
 
-  Widget Nombre_Usuario() {
+  Widget Nombre_Usuario(context) {
     return Column(
       children: [
         Container(
+          width: MediaQuery.of(context).size.width * 0.7,
           margin: const EdgeInsets.only(top: 10),
           decoration: BoxDecoration(
             border: Border(

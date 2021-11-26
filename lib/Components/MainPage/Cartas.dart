@@ -18,10 +18,20 @@ class Cartas extends StatelessWidget {
   final String Estado;
   final DateTime Tiempo;
   final String Region;
+  final String ID_EMPLEADO;
   final String ID_AIRTABLE;
 
-  const Cartas(this.NombreUsuario, this.Agencia, this.UrlFoto, this.Genero,
-      this.now, this.Estado, this.Tiempo, this.Region, this.ID_AIRTABLE,
+  const Cartas(
+      this.NombreUsuario,
+      this.Agencia,
+      this.UrlFoto,
+      this.Genero,
+      this.now,
+      this.Estado,
+      this.Tiempo,
+      this.Region,
+      this.ID_EMPLEADO,
+      this.ID_AIRTABLE,
       {Key? key})
       : super(key: key);
 
@@ -40,6 +50,7 @@ class Cartas extends StatelessWidget {
                   this.Genero,
                   this.now,
                   this.Tiempo,
+                  this.ID_EMPLEADO,
                   this.ID_AIRTABLE),
             ),
           );
@@ -54,6 +65,7 @@ class Cartas extends StatelessWidget {
                   this.Genero,
                   this.now,
                   this.Tiempo,
+                  this.ID_EMPLEADO,
                   this.ID_AIRTABLE),
             ),
           );

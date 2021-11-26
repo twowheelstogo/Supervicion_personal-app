@@ -12,10 +12,11 @@ class RevisionUniformeMujer extends StatelessWidget {
   final String Genero;
   final String now;
   final DateTime Tiempo;
+  final String ID_EMPLEADO;
   final String ID_AIRTABLE;
 
   const RevisionUniformeMujer(this.NombreUsuario, this.Agencia, this.UrlFoto,
-      this.Genero, this.now, this.Tiempo, this.ID_AIRTABLE,
+      this.Genero, this.now, this.Tiempo, this.ID_EMPLEADO, this.ID_AIRTABLE,
       {Key? key})
       : super(key: key);
 
@@ -43,7 +44,7 @@ class RevisionUniformeMujer extends StatelessWidget {
               context,
               "Maquillaje",
               "Maquillaje",
-              MediaQuery.of(context).size.width * 0.17,
+              MediaQuery.of(context).size.width * 0.15,
               0,
               0,
               5,
@@ -60,7 +61,7 @@ class RevisionUniformeMujer extends StatelessWidget {
               MediaQuery.of(context).size.width * 0.09,
               MediaQuery.of(context).size.width * 0.13,
               0,
-              '#1f4497',
+              '#535461',
               Alignment.bottomRight),
           ContenedorImages(
               'assets/images/CuerpoMujer/PantalonMujer.png',
@@ -73,7 +74,7 @@ class RevisionUniformeMujer extends StatelessWidget {
               0,
               MediaQuery.of(context).size.width * 0.2,
               0,
-              '#1f4497',
+              '#535461',
               Alignment.bottomLeft),
           ContenedorImages(
               'assets/images/CuerpoMujer/ZapatosMujer.png',
@@ -86,10 +87,10 @@ class RevisionUniformeMujer extends StatelessWidget {
               0,
               0,
               0,
-              '#1f4497',
+              '#535461',
               Alignment.bottomLeft),
           Final('assets/images/CuerpoMujer/FinalMujer.png', double.infinity,
-              MediaQuery.of(context).size.width * 0.40)
+              MediaQuery.of(context).size.width * 0.40, context)
         ],
       ),
     )));
@@ -118,28 +119,40 @@ class RevisionUniformeMujer extends StatelessWidget {
                 height: MediaQuery.of(context).size.width * 0.05,
               ),
               Titulo(),
-              UserData('Pelo', 'Pelo', MediaQuery.of(context).size.width * 0.45,
-                  0, MediaQuery.of(context).size.width * 0.05, 0, '#ffffff'),
+              UserData(
+                  'Cabello',
+                  'Cabello',
+                  MediaQuery.of(context).size.width * 0.53,
+                  0,
+                  MediaQuery.of(context).size.width * 0.05,
+                  0,
+                  '#ffffff',
+                  this.ID_EMPLEADO,
+                  this.ID_AIRTABLE,
+                  '0',
+                  '0'),
             ])),
       ]),
     );
   }
 
-  Widget Final(String ruta, double Width, double Height) {
+  Widget Final(String ruta, double Width, double Height, context) {
     return SingleChildScrollView(
         child: Container(
       width: Width,
-      height: Height,
       decoration: BoxDecoration(
           image: DecorationImage(image: AssetImage(ruta), fit: BoxFit.cover)),
       child: Column(
         children: [
-          Nombre_Usuario(),
-          Fecha(),
+          Nombre_Usuario(context),
+          Fecha(context),
           SizedBox(
             height: 20,
           ),
-          ModalComentario()
+          ModalComentario(),
+          SizedBox(
+            height: 20,
+          ),
         ],
       ),
     ));
@@ -166,7 +179,8 @@ class RevisionUniformeMujer extends StatelessWidget {
           image: DecorationImage(image: AssetImage(ruta), fit: BoxFit.cover)),
       child: Container(
         alignment: Tipo,
-        child: UserData(Label, Numero, Left, Right, Top, Bottom, Color),
+        child: UserData(Label, Numero, Left, Right, Top, Bottom, Color,
+            this.ID_EMPLEADO, this.ID_AIRTABLE, '0', '0'),
       ),
     ));
   }
@@ -219,11 +233,12 @@ class RevisionUniformeMujer extends StatelessWidget {
     );
   }
 
-  Widget Fecha() {
+  Widget Fecha(context) {
     return Column(
       children: [
         Container(
           margin: const EdgeInsets.only(top: 10),
+          width: MediaQuery.of(context).size.width * 0.7,
           decoration: BoxDecoration(
             border: Border(
                 bottom: BorderSide(width: 1.5, color: HexColor("#C4C4C4"))),
@@ -241,10 +256,11 @@ class RevisionUniformeMujer extends StatelessWidget {
     );
   }
 
-  Widget Nombre_Usuario() {
+  Widget Nombre_Usuario(context) {
     return Column(
       children: [
         Container(
+          width: MediaQuery.of(context).size.width * 0.7,
           margin: const EdgeInsets.only(top: 10),
           decoration: BoxDecoration(
             border: Border(
