@@ -3,6 +3,7 @@ import 'package:http/http.dart' as http;
 import 'package:control_empleados/Components/Constants/Index.dart';
 import 'dart:convert';
 import 'package:intl/intl.dart';
+import 'package:location/location.dart';
 
 class Comentarios {
   Future<List> Calificacion(
@@ -35,6 +36,7 @@ class Comentarios {
       String Longitud,
       double CALIFICACION) async {
     String now = DateFormat("yyyy-MM-dd").format(DateTime.now());
+    final position = await Location.instance.getLocation();
 
     Map<String, String> headers = {
       'Content-type': 'application/json',
@@ -47,8 +49,8 @@ class Comentarios {
       "FECHA_REVISION": now,
       "ENCARGADO": [Encargado],
       "COLABORADORES": [COLABORADORES],
-      "LATITUD": Latitud,
-      "LONGITUD": Longitud,
+      "LATITUD": position.latitude,
+      "LONGITUD": position.longitude,
       "CALIFICACION": CALIFICACION
     };
 
@@ -58,7 +60,7 @@ class Comentarios {
       ]
     });
 
-    String url = urlApi + 'BITACORA_EMPLEADOS';
+    String url = urlApi + 'BITACORA_EMPLEADOS_CALIFICACION';
 
     print(url);
     print(bodyEncoded);
@@ -68,12 +70,77 @@ class Comentarios {
 
       return response;
     } on http.ClientException catch (e) {
-      print('ni merga');
       throw (e.message);
     }
   }
 
-  void Comentario(String Tipo, double total) {
-    print('Total $total - Tipo $Tipo');
+  Future<http.Response> ComentarTrabajo(
+    String COMENTARIO,
+    String COLABORADORES,
+    String Encargado,
+    String Latitud,
+    String Longitud,
+  ) async {
+    String now = DateFormat("yyyy-MM-dd").format(DateTime.now());
+    // LocationResult result = await Geolocation.lastKnownLocation();
+    // double lat = result.location.latitude;
+    // double lng = result.location.longitude;
+    final position = await Location.instance.getLocation();
+
+    Map<String, String> headers = {
+      'Content-type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': "Bearer $Token"
+    };
+
+    Map<String, dynamic> body = {
+      "COMENTARIO": COMENTARIO,
+      "FECHA_COMENTARIO": now,
+      "ENCARGADO": [Encargado],
+      "COLABORADORES": [COLABORADORES],
+      "LATITUD": position.latitude,
+      "LONGITUD": position.longitude,
+    };
+
+    final bodyEncoded = json.encode({
+      "records": [
+        {"fields": body}
+      ]
+    });
+
+    String url = urlApi + 'BITACORA_EMPLEADOS_COMENTARIOS';
+
+    print(url);
+    print(bodyEncoded);
+    try {
+      final response =
+          await http.post(Uri.parse(url), headers: headers, body: bodyEncoded);
+
+      return response;
+    } on http.ClientException catch (e) {
+      throw (e.message);
+    }
+  }
+
+  Future<List> Comentario(
+    String COMENTARIO,
+    String COLABORADORES,
+    String Encargado,
+    String Latitud,
+    String Longitud,
+  ) async {
+    List lst = [];
+    try {
+      final Res = await ComentarTrabajo(
+          COMENTARIO, COLABORADORES, Encargado, Latitud, Longitud);
+
+      if (Res.statusCode == 200) {
+        return [true, 'Comentario publicado exitosamente.'];
+      } else {
+        return [false, 'Ha ocurrido un error, intente nuevamente.'];
+      }
+    } catch (e) {
+      return [false, 'Ha ocurrido un error, intente nuevamente.'];
+    }
   }
 }

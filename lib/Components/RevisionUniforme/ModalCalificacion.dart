@@ -42,6 +42,7 @@ double val = 0;
 class ModalCalificacion extends State<UserData> {
   bool _value = false;
   double val = 1;
+
   @override
   Widget build(BuildContext context) {
     void _showModalBottomSheet(BuildContext context) {

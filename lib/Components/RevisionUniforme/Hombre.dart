@@ -104,6 +104,18 @@ class RevisionUniformeHombre extends StatelessWidget {
                 height: MediaQuery.of(context).size.width * 0.05,
               ),
               Titulo(),
+              UserData(
+                  'Cabello',
+                  'Cabello',
+                  0,
+                  MediaQuery.of(context).size.width * 0.45,
+                  MediaQuery.of(context).size.width * 0.15,
+                  0,
+                  '#ffffff',
+                  this.ID_EMPLEADO,
+                  this.ID_AIRTABLE,
+                  '0',
+                  '0'),
             ])),
       ]),
     );
@@ -122,7 +134,7 @@ class RevisionUniformeHombre extends StatelessWidget {
           SizedBox(
             height: 20,
           ),
-          ModalComentario(),
+          ModalComentario(this.ID_EMPLEADO, this.ID_AIRTABLE, '0', '0'),
           SizedBox(
             height: 20,
           ),
@@ -151,7 +163,7 @@ class RevisionUniformeHombre extends StatelessWidget {
           image: DecorationImage(image: AssetImage(ruta), fit: BoxFit.cover)),
       child: Container(
         alignment: Tipo,
-        child: UserData(Label, Numero, Left, Right, Top, Bottom, "#1f4497",
+        child: UserData(Label, Numero, Left, Right, Top, Bottom, "#535461",
             this.ID_EMPLEADO, this.ID_AIRTABLE, '0', '0'),
       ),
     ));
@@ -168,14 +180,14 @@ class RevisionUniformeHombre extends StatelessWidget {
                   minWidth: 100.0,
                   height: 45.0,
                   child: RaisedButton(
-                    textColor: HexColor('#FFFFFF'),
-                    color: HexColor("#B3B4BC"),
+                    textColor: HexColor('#535461'),
+                    color: HexColor("#FFFFFF"),
                     child: Text(
                       "Regresar",
                       style: TextStyle(
                         fontSize: 20,
                         fontFamily: 'Lato',
-                        color: HexColor("#FFFFFF"),
+                        color: HexColor("#535461"),
                         fontWeight: FontWeight.w400,
                       ),
                     ),

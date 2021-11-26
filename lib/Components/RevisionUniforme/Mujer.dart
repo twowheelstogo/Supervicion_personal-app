@@ -149,7 +149,7 @@ class RevisionUniformeMujer extends StatelessWidget {
           SizedBox(
             height: 20,
           ),
-          ModalComentario(),
+          ModalComentario(this.ID_EMPLEADO, this.ID_AIRTABLE, '0', '0'),
           SizedBox(
             height: 20,
           ),
@@ -196,14 +196,14 @@ class RevisionUniformeMujer extends StatelessWidget {
                   minWidth: 100.0,
                   height: 45.0,
                   child: RaisedButton(
-                    textColor: HexColor('#FFFFFF'),
-                    color: HexColor("#B3B4BC"),
+                    textColor: HexColor('#535461'),
+                    color: HexColor("#FFFFFF"),
                     child: Text(
                       "Regresar",
                       style: TextStyle(
                         fontSize: 20,
                         fontFamily: 'Lato',
-                        color: HexColor("#FFFFFF"),
+                        color: HexColor("#535461"),
                         fontWeight: FontWeight.w400,
                       ),
                     ),

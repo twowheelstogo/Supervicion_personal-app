@@ -5,11 +5,42 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:control_empleados/Components/MainPage/Index.dart';
 import 'package:control_empleados/Components/RevisionUniforme/Metodos.dart';
 
-class ModalComentario extends StatelessWidget {
+class ModalComentario extends StatefulWidget {
+  final String COLABORADORES;
+  final String Encargado;
+  final String Latitud;
+  final String Longitud;
+
+  const ModalComentario(
+      this.COLABORADORES, this.Encargado, this.Latitud, this.Longitud);
+
+  @override
+  ModalComentario_ createState() => ModalComentario_();
+}
+
+class ModalComentario_ extends State<ModalComentario> {
+  final _Comentario_ = TextEditingController();
+
+  void CalificarComentarios() async {
+    List Res = await Comentarios().Comentario(
+        _Comentario_.text.toString(),
+        widget.COLABORADORES,
+        widget.Encargado,
+        widget.Latitud,
+        widget.Longitud);
+    final _snackbar = SnackBar(content: Text(Res[1]));
+
+    if (Res[0] == true) {
+      Navigator.pop(context);
+      ScaffoldMessenger.of(context).showSnackBar(_snackbar);
+    } else {
+      Navigator.pop(context);
+      ScaffoldMessenger.of(context).showSnackBar(_snackbar);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    final _Comentario_ = TextEditingController();
-
     void _showModalBottomSheet(BuildContext context) {
       showModalBottomSheet(
           context: context,
@@ -66,8 +97,7 @@ class ModalComentario extends StatelessWidget {
                                 fontWeight: FontWeight.w400,
                               ),
                             ),
-                            onPressed: () =>
-                                Comentarios().Comentario(_Comentario_.text, 1),
+                            onPressed: CalificarComentarios,
                             shape: new RoundedRectangleBorder(
                               borderRadius: new BorderRadius.circular(40.0),
                             ),
@@ -111,10 +141,10 @@ class ModalComentario extends StatelessWidget {
                 padding: EdgeInsets.only(right: 0.0),
                 child: ButtonTheme(
                   minWidth: 100.0,
-                  height: 45.0,
+                  height: 50.0,
                   child: RaisedButton(
                     textColor: HexColor('#FFFFFF'),
-                    color: HexColor("#B3B4BC"),
+                    color: HexColor("#535461"),
                     child: Text(
                       "Añadir Comentarios",
                       style: TextStyle(
