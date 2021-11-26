@@ -4,7 +4,7 @@ import 'package:control_empleados/Components/LogIn/Metodos.dart';
 import 'package:control_empleados/Components/MainPage/Index.dart';
 import 'package:control_empleados/Components/Constants/Index.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:control_empleados/Components/Componentes/spinner.dart';
+import 'package:modal_progress_hud/modal_progress_hud.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -14,10 +14,10 @@ class LoginPage extends StatefulWidget {
 class LoginPageState_ extends State<LoginPage> {
   TextEditingController username = TextEditingController();
   TextEditingController password = TextEditingController();
-  final _snackbar = SnackBar(content: Text('Ha ocurrido un error'));
   final _formkey = GlobalKey<FormState>();
   final _scaffoldKey = GlobalKey<ScaffoldState>();
-  bool bandera = false;
+  List bandera = [];
+  bool Loading = false;
 
   void initState() {
     username.text = ""; //innitail value of text field
@@ -45,13 +45,18 @@ class LoginPageState_ extends State<LoginPage> {
   }
 
   void Imprimir() async {
-    // showDialog(
-    //     context: context,
-    //     builder: (context) => Spinner(),
-    //     barrierDismissible: true);
+    setState(() {
+      Loading = true;
+    });
+
     bandera = await Autenticacion().Autenticar(username.text);
-    print(bandera);
-    if (bandera) {
+    final _snackbar = SnackBar(content: Text(bandera[1]));
+
+    setState(() {
+      Loading = false;
+    });
+
+    if (bandera[0]) {
       ScaffoldMessenger.of(context).showSnackBar(_snackbar);
     } else {
       Navigator.push<void>(
@@ -68,7 +73,8 @@ class LoginPageState_ extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
+        body: ModalProgressHUD(
+      child: SingleChildScrollView(
         child: Column(
           children: [
             Image.asset("assets/images/FondoInicio.png",
@@ -89,6 +95,9 @@ class LoginPageState_ extends State<LoginPage> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
+                          SizedBox(
+                            height: 30,
+                          ),
                           Container(
                             alignment: Alignment.center,
                             child: TextField(
@@ -110,37 +119,11 @@ class LoginPageState_ extends State<LoginPage> {
                                   labelStyle: TextStyle(
                                       color: HexColor(ColorPrincipal),
                                       fontSize: 22),
-                                  labelText: "Usuario",
+                                  labelText: "Ingrese su DPI",
                                   prefixIcon: Icon(Icons.account_circle,
                                       color: HexColor(
                                           ColorPrincipal)), //icon at head of input
                                 )),
-                          ),
-                          Container(
-                            alignment: Alignment.center,
-                            child: TextField(
-                              controller: password,
-                              obscureText: true,
-                              cursorColor: HexColor(ColorPrincipal),
-                              style: TextStyle(color: HexColor(ColorPrincipal)),
-                              decoration: InputDecoration(
-                                  focusedBorder: UnderlineInputBorder(
-                                    borderSide: BorderSide(
-                                        color: HexColor(ColorPrincipal),
-                                        width: 4.5),
-                                  ),
-                                  enabledBorder: UnderlineInputBorder(
-                                    borderSide: BorderSide(
-                                        color: HexColor(ColorPrincipal),
-                                        width: 4.5),
-                                  ),
-                                  labelStyle: TextStyle(
-                                      color: HexColor(ColorPrincipal),
-                                      fontSize: 22),
-                                  labelText: "Contraseña",
-                                  prefixIcon: Icon(Icons.lock,
-                                      color: HexColor(ColorPrincipal))),
-                            ),
                           ),
                           SizedBox(
                             height: 70,
@@ -179,6 +162,13 @@ class LoginPageState_ extends State<LoginPage> {
           ],
         ),
       ),
-    );
+      inAsyncCall: Loading,
+      // demo of some additional parameters
+      opacity: 0.5,
+      progressIndicator: CircularProgressIndicator(
+        valueColor:
+            new AlwaysStoppedAnimation<Color>(Color.fromRGBO(255, 255, 255, 1)),
+      ),
+    ));
   }
 }

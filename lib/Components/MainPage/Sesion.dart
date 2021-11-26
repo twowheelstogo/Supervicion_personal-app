@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:control_empleados/Components/LogIn/Index.dart';
 
-
 class LogOut extends StatefulWidget {
   @override
   LogOut_ createState() => LogOut_();
@@ -13,26 +12,24 @@ class LogOut_ extends State<LogOut> {
     switch (opt) {
       case 'SIGNOUT':
         signOut();
-         Navigator.push<void>(
-    context,
-    MaterialPageRoute<void>(
-      builder: (BuildContext context) =>  LoginPage(),
-    ),
-  );
+        Navigator.push<void>(
+          context,
+          MaterialPageRoute<void>(
+            builder: (BuildContext context) => LoginPage(),
+          ),
+        );
         break;
       default:
         break;
     }
   }
 
-  void signOut() async {  
+  void signOut() async {
     SharedPreferences prefs;
     prefs = await SharedPreferences.getInstance();
     prefs.remove("usuario");
-    prefs.remove("pass");
-    prefs.remove("Region");
-    prefs.remove("UsuarioB");        
-
+    prefs.remove("UltimaHora");
+    prefs.remove("id");
   }
 
   String NombreUsuario = "";
