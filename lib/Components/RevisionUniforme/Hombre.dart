@@ -73,8 +73,12 @@ class RevisionUniformeHombre extends StatelessWidget {
                 0,
                 0,
                 Alignment.bottomRight),
-            Final('assets/images/CuerpoHombre/FinalHombre.png', double.infinity,
-                MediaQuery.of(context).size.width * 0.40, context)
+            Final(
+                'assets/images/CuerpoHombre/FinalHombre.png',
+                double.infinity,
+                MediaQuery.of(context).size.width * 0.40,
+                context,
+                'REVISION UNIFORME')
           ],
         ),
       )),
@@ -121,7 +125,7 @@ class RevisionUniformeHombre extends StatelessWidget {
     );
   }
 
-  Widget Final(String ruta, double Width, double Height, context) {
+  Widget Final(String ruta, double Width, double Height, context, String Tipo) {
     return SingleChildScrollView(
         child: Container(
       width: Width,
@@ -134,7 +138,7 @@ class RevisionUniformeHombre extends StatelessWidget {
           SizedBox(
             height: 20,
           ),
-          ModalComentario(this.ID_EMPLEADO, this.ID_AIRTABLE, '0', '0'),
+          ModalComentario(this.ID_EMPLEADO, this.ID_AIRTABLE, '0', '0', Tipo),
           SizedBox(
             height: 20,
           ),

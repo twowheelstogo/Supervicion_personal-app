@@ -75,12 +75,13 @@ class Comentarios {
   }
 
   Future<http.Response> ComentarTrabajo(
-    String COMENTARIO,
-    String COLABORADORES,
-    String Encargado,
-    String Latitud,
-    String Longitud,
-  ) async {
+      String COMENTARIO,
+      String COLABORADORES,
+      String Encargado,
+      String Latitud,
+      String Longitud,
+      String TIPO,
+      String TIPO2) async {
     String now = DateFormat("yyyy-MM-dd").format(DateTime.now());
     // LocationResult result = await Geolocation.lastKnownLocation();
     // double lat = result.location.latitude;
@@ -100,7 +101,8 @@ class Comentarios {
       "COLABORADORES": [COLABORADORES],
       "LATITUD": position.latitude,
       "LONGITUD": position.longitude,
-      "TIPO": "Uniforme"
+      "AREA": TIPO.toUpperCase(),
+      "TIPO": TIPO2.toUpperCase()
     };
 
     final bodyEncoded = json.encode({
@@ -116,7 +118,7 @@ class Comentarios {
     try {
       final response =
           await http.post(Uri.parse(url), headers: headers, body: bodyEncoded);
-
+      print(response.statusCode);
       return response;
     } on http.ClientException catch (e) {
       throw (e.message);
@@ -124,16 +126,17 @@ class Comentarios {
   }
 
   Future<List> Comentario(
-    String COMENTARIO,
-    String COLABORADORES,
-    String Encargado,
-    String Latitud,
-    String Longitud,
-  ) async {
+      String COMENTARIO,
+      String COLABORADORES,
+      String Encargado,
+      String Latitud,
+      String Longitud,
+      String TIPO,
+      String TIPO2) async {
     List lst = [];
     try {
       final Res = await ComentarTrabajo(
-          COMENTARIO, COLABORADORES, Encargado, Latitud, Longitud);
+          COMENTARIO, COLABORADORES, Encargado, Latitud, Longitud, TIPO, TIPO2);
 
       if (Res.statusCode == 200) {
         return [true, 'Comentario publicado exitosamente.'];

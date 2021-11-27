@@ -5,6 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:control_empleados/Components/MainPage/Index.dart';
 import 'package:control_empleados/Components/RevisionArea/Metodos.dart';
 import 'package:control_empleados/Components/RevisionArea/ModalCalificacion.dart';
+import 'package:control_empleados/Components/RevisionArea/ModalComentario.dart';
 
 class RevisionArea extends StatelessWidget {
   final String NombreUsuario;
@@ -115,14 +116,53 @@ class RevisionArea extends StatelessWidget {
               image: DecorationImage(image: AssetImage(url), fit: BoxFit.cover),
             ),
             child: Container(
-              alignment: Alignment.center,
-              child: Navegar(Tipo, context),
+              child: Inicio(Tipo, context),
             ))
       ],
     );
   }
 
-  Widget Navegar(String Tipo, context) {
+  Widget Inicio(String Tipo, context) {
+    return Stack(
+      children: <Widget>[
+        Positioned(
+          top: 10,
+          left: 15,
+          child: Container(
+            width: 150.0,
+            height: 100.0,
+            child: Text(Tipo,
+                style: TextStyle(
+                    fontFamily: "Lato",
+                    fontWeight: FontWeight.w700,
+                    fontSize: 20,
+                    color: HexColor("#85868E"))),
+          ),
+        ),
+        Positioned(
+          top: 10,
+          right: 5,
+          child: Container(
+            width: 120.0,
+            height: 100.0,
+            child: UserData(Tipo, this.ID_EMPLEADO, this.ID_AIRTABLE, '0', '0'),
+          ),
+        ),
+        Positioned(
+          top: MediaQuery.of(context).size.width * 0.45,
+          right: 0,
+          child: Container(
+            width: 120.0,
+            height: 100.0,
+            child: ModalComentario(
+                this.ID_EMPLEADO, this.ID_AIRTABLE, '0', '0', Tipo),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget Final(String Tipo, context) {
     return Stack(
       children: <Widget>[
         Positioned(

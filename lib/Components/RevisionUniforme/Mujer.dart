@@ -149,7 +149,8 @@ class RevisionUniformeMujer extends StatelessWidget {
           SizedBox(
             height: 20,
           ),
-          ModalComentario(this.ID_EMPLEADO, this.ID_AIRTABLE, '0', '0'),
+          ModalComentario(this.ID_EMPLEADO, this.ID_AIRTABLE, '0', '0',
+              'REVISION UNIFORME'),
           SizedBox(
             height: 20,
           ),

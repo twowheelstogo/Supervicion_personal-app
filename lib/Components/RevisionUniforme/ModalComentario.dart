@@ -10,9 +10,10 @@ class ModalComentario extends StatefulWidget {
   final String Encargado;
   final String Latitud;
   final String Longitud;
+  final String TIPO;
 
-  const ModalComentario(
-      this.COLABORADORES, this.Encargado, this.Latitud, this.Longitud);
+  const ModalComentario(this.COLABORADORES, this.Encargado, this.Latitud,
+      this.Longitud, this.TIPO);
 
   @override
   ModalComentario_ createState() => ModalComentario_();
@@ -27,7 +28,9 @@ class ModalComentario_ extends State<ModalComentario> {
         widget.COLABORADORES,
         widget.Encargado,
         widget.Latitud,
-        widget.Longitud);
+        widget.Longitud,
+        'UNIFORME',
+        widget.TIPO);
     final _snackbar = SnackBar(content: Text(Res[1]));
 
     if (Res[0] == true) {
