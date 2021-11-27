@@ -52,7 +52,7 @@ class RevisionUniformeHombre extends StatelessWidget {
             ContenedorImages(
                 'assets/images/CuerpoHombre/PantalonHombre.png',
                 double.infinity,
-                MediaQuery.of(context).size.width * 0.45,
+                MediaQuery.of(context).size.width * 0.55,
                 context,
                 "Pantalon",
                 "Pantalon",
@@ -64,14 +64,14 @@ class RevisionUniformeHombre extends StatelessWidget {
             ContenedorImages(
                 'assets/images/CuerpoHombre/ZapatosHombre.png',
                 double.infinity,
-                MediaQuery.of(context).size.width * 0.16,
+                MediaQuery.of(context).size.width * 0.25,
                 context,
                 "Zapatos",
                 "Zapatos",
                 0,
-                MediaQuery.of(context).size.width * 0.1,
+                MediaQuery.of(context).size.width * 0.12,
                 0,
-                0,
+                10,
                 Alignment.bottomRight),
             Final(
                 'assets/images/CuerpoHombre/FinalHombre.png',

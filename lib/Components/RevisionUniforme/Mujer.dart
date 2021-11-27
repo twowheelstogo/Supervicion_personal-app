@@ -66,7 +66,7 @@ class RevisionUniformeMujer extends StatelessWidget {
           ContenedorImages(
               'assets/images/CuerpoMujer/PantalonMujer.png',
               double.infinity,
-              MediaQuery.of(context).size.width * 0.5,
+              MediaQuery.of(context).size.width * 0.48,
               context,
               "Pantalon",
               "Pantalon",
@@ -79,11 +79,11 @@ class RevisionUniformeMujer extends StatelessWidget {
           ContenedorImages(
               'assets/images/CuerpoMujer/ZapatosMujer.png',
               double.infinity,
-              MediaQuery.of(context).size.width * 0.15,
+              MediaQuery.of(context).size.width * 0.2,
               context,
               "Zapatos",
               "Zapatos",
-              MediaQuery.of(context).size.width * 0.6,
+              MediaQuery.of(context).size.width * 0.57,
               0,
               0,
               0,
