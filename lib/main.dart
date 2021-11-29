@@ -1,6 +1,6 @@
 import 'package:control_empleados/Components/Config/routes.dart';
 import 'package:flutter/material.dart';
-import 'Components/LogIn/Index.dart';
+import 'package:control_empleados/Components/LogIn/Index.dart';
 import 'package:control_empleados/Components/MainPage/Index.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

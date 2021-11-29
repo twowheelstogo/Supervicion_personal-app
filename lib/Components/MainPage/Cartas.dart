@@ -190,7 +190,7 @@ class Cartas extends StatelessWidget {
                 Padding(
                     padding: EdgeInsets.only(left: 13.0, right: 0.0),
                     child: ButtonTheme(
-                      minWidth: MediaQuery.of(context).size.width * 0.05,
+                      minWidth: MediaQuery.of(context).size.width * 0.03,
                       height: 45.0,
                       child: RaisedButton(
                         textColor: HexColor('#FFFFFF'),
@@ -198,7 +198,7 @@ class Cartas extends StatelessWidget {
                         child: Text(
                           "Revisar Uniforme",
                           style: TextStyle(
-                            fontSize: 20,
+                            fontSize: MediaQuery.of(context).size.width * 0.05,
                             fontFamily: 'Lato',
                             color: HexColor("#FFFFFF"),
                             fontWeight: FontWeight.w400,
@@ -221,7 +221,7 @@ class Cartas extends StatelessWidget {
                         child: Text(
                           "Revisar Area",
                           style: TextStyle(
-                            fontSize: 20,
+                            fontSize: MediaQuery.of(context).size.width * 0.05,
                             fontFamily: 'Lato',
                             color: HexColor("#FFFFFF"),
                             fontWeight: FontWeight.w400,

@@ -78,7 +78,7 @@ class LoginPageState_ extends State<LoginPage> {
         child: Column(
           children: [
             Image.asset("assets/images/FondoInicio.png",
-                fit: BoxFit.fill, width: double.infinity, height: 350),
+                fit: BoxFit.fill, width: double.infinity, height: 380),
             SizedBox(
               height: 20,
             ),

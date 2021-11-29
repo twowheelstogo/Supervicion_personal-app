@@ -113,7 +113,10 @@ class RevisionArea extends StatelessWidget {
             width: MediaQuery.of(context).size.width * 0.90,
             height: MediaQuery.of(context).size.width * 0.6,
             decoration: BoxDecoration(
-              image: DecorationImage(image: AssetImage(url), fit: BoxFit.cover),
+              image: DecorationImage(
+                image: AssetImage(url),
+                fit: BoxFit.cover,
+              ),
             ),
             child: Container(
               child: Inicio(Tipo, context),
@@ -149,8 +152,8 @@ class RevisionArea extends StatelessWidget {
           ),
         ),
         Positioned(
-          top: MediaQuery.of(context).size.width * 0.45,
-          right: 0,
+          top: MediaQuery.of(context).size.width * 0.46,
+          right: 5,
           child: Container(
             width: 120.0,
             height: 100.0,

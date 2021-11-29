@@ -124,7 +124,7 @@ class RevisionUniformeMujer extends StatelessWidget {
                   'Cabello',
                   MediaQuery.of(context).size.width * 0.53,
                   0,
-                  MediaQuery.of(context).size.width * 0.05,
+                  MediaQuery.of(context).size.width * 0.01,
                   0,
                   '#ffffff',
                   this.ID_EMPLEADO,

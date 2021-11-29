@@ -151,7 +151,7 @@ class ModalComentario_ extends State<ModalComentario> {
           height: 30,
           child: RaisedButton(
             textColor: HexColor('#FFFFFF'),
-            color: HexColor("#F16623"),
+            color: HexColor("#85868E"),
             child: Text(
               "Comentario",
               style: TextStyle(
