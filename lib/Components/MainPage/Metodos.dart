@@ -42,30 +42,20 @@ class Principal {
     return tmp;
   }
 
-  List<Empleado> ListaFiltrada(final Lista_, String usuario, String region) {
+  List<Empleado> ListaFiltrada(
+      final Lista_, String usuario, String region, String agencia) {
+    print('agencia: ' + agencia);
     List<Empleado> lista = AsignarValores(Lista_);
-
-    if (usuario.length > 0 && region.length > 0) {
-      List<Empleado> newLst = lista
-          .where((o) => o.Nombre.toLowerCase().contains(usuario.toLowerCase()))
-          .toList();
-      List<Empleado> newLst2 = newLst
-          .where((o) => o.Region.toLowerCase().contains(region.toLowerCase()))
-          .toList();
-      return newLst2;
-    } else if (usuario.length == 0 && region.length > 0) {
-      List<Empleado> newLst = lista
-          .where((o) => o.Region.toLowerCase().contains(region.toLowerCase()))
-          .toList();
-      return newLst;
-    } else if (usuario.length > 0 && region.length == 0) {
-      List<Empleado> newLst = lista
-          .where((o) => o.Nombre.toLowerCase().contains(usuario.toLowerCase()))
-          .toList();
-      return newLst;
-    } else {
-      return lista;
-    }
+    List<Empleado> newLst = lista
+        .where((o) => o.Nombre.toLowerCase().contains(usuario.toLowerCase()))
+        .toList();
+    List<Empleado> newLst2 = newLst
+        .where((o) => o.Region.toLowerCase().contains(region.toLowerCase()))
+        .toList();
+    List<Empleado> newLst3 = newLst2
+        .where((o) => o.Agencia.toLowerCase().contains(agencia.toLowerCase()))
+        .toList();
+    return newLst3;
   }
 
   Future<List<Empleado>> DataEmpleados(String id) async {

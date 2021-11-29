@@ -40,6 +40,7 @@ class MainPage extends StatefulWidget {
 class MainPage_ extends State<MainPage> {
   TextEditingController UsuarioBusqueda = TextEditingController();
   TextEditingController RegionBusqueda = TextEditingController();
+  TextEditingController AgenciaBusqueda = TextEditingController();
 
   List<Empleado> ListaEmpleados = [];
   String DPI = "";
@@ -49,6 +50,7 @@ class MainPage_ extends State<MainPage> {
   void initState() {
     UsuarioBusqueda.text = ""; //innitail value of text field
     RegionBusqueda.text = "";
+    AgenciaBusqueda.text = "";
     super.initState();
   }
 
@@ -127,7 +129,7 @@ class MainPage_ extends State<MainPage> {
             Container(
                 color: HexColor('#f16623'),
                 width: double.infinity,
-                height: MediaQuery.of(context).size.width * 0.50,
+                height: MediaQuery.of(context).size.width * 0.70,
                 child: Column(
                   children: [
                     Container(
@@ -142,11 +144,20 @@ class MainPage_ extends State<MainPage> {
                         padding: EdgeInsets.symmetric(horizontal: 20),
                         child: TextFieldDinamico__(
                             RegionBusqueda, 'Macroregión', 'Region')),
+                    Container(
+                        margin: const EdgeInsets.only(top: 10),
+                        width: MediaQuery.of(context).size.width * 0.9,
+                        padding: EdgeInsets.symmetric(horizontal: 20),
+                        child: TextFieldDinamico__(
+                            AgenciaBusqueda, 'Agencia', 'Agencia')),
                   ],
                 ))
           ]),
-          for (var i in Principal().ListaFiltrada(ListaEmpleados,
-              UsuarioBusqueda.text.toString(), RegionBusqueda.text.toString()))
+          for (var i in Principal().ListaFiltrada(
+              ListaEmpleados,
+              UsuarioBusqueda.text.toString(),
+              RegionBusqueda.text.toString(),
+              AgenciaBusqueda.text.toString()))
             Cartas(i.Nombre, i.Agencia, i.urlFoto, i.Genero, now, i.Estado,
                 i.Tiempo, i.Region, i.ID_EMPLEADO, ID_AIRTABLE)
         ],
@@ -181,7 +192,7 @@ class MainPage_ extends State<MainPage> {
                             .storage_(Llave, controlador.text.toString()),
                         controller: controlador,
                         cursorColor: HexColor("#C4C4C4"),
-                        style: TextStyle(color: HexColor("#C4C4C4")),
+                        style: TextStyle(color: HexColor("#FFFFFF")),
                         decoration: InputDecoration(
                           focusedBorder: UnderlineInputBorder(
                             borderSide: BorderSide(
