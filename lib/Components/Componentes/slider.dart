@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:control_empleados/Components/RevisionUniforme/Metodos.dart';
+import 'package:Supervision_Empleados/Components/RevisionUniforme/Metodos.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 
 class MySliderApp extends StatefulWidget {

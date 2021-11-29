@@ -1,4 +1,4 @@
-package com.example.control_empleados
+package com.Supervision_Empleados
 
 import io.flutter.embedding.android.FlutterActivity
 

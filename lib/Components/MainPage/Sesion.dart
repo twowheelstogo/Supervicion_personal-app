@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:control_empleados/Components/LogIn/Index.dart';
+import 'package:Supervision_Empleados/Components/LogIn/Index.dart';
 
 class LogOut extends StatefulWidget {
   @override

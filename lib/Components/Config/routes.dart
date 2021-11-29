@@ -1,7 +1,7 @@
-import 'package:control_empleados/Components/LogIn/Index.dart';
+import 'package:Supervision_Empleados/Components/LogIn/Index.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:control_empleados/Components/MainPage/Index.dart';
+import 'package:Supervision_Empleados/Components/MainPage/Index.dart';
 
 const LogIn = '/auth';
 const MainRoute = '/main';

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:control_empleados/Components/MainPage/Sesion.dart';
-import 'package:control_empleados/Components/Constants/Index.dart';
+import 'package:Supervision_Empleados/Components/MainPage/Sesion.dart';
+import 'package:Supervision_Empleados/Components/Constants/Index.dart';
 
 class Presentacion extends StatefulWidget {
   const Presentacion({Key? key}) : super(key: key);

@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:control_empleados/Components/MainPage/Index.dart';
-import 'package:control_empleados/Components/RevisionUniforme/Metodos.dart';
-import 'package:control_empleados/Components/Componentes/slider.dart';
+import 'package:Supervision_Empleados/Components/MainPage/Index.dart';
+import 'package:Supervision_Empleados/Components/RevisionUniforme/Metodos.dart';
+import 'package:Supervision_Empleados/Components/Componentes/slider.dart';
 
 class UserData extends StatefulWidget {
   final String Tipo;

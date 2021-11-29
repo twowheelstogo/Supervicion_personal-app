@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:control_empleados/Components/MainPage/Metodos.dart';
-import 'package:control_empleados/Components/MainPage/Index.dart';
-import 'package:control_empleados/Components/RevisionUniforme/ModalComentario.dart';
-import 'package:control_empleados/Components/RevisionUniforme/ModalCalificacion.dart';
+import 'package:Supervision_Empleados/Components/MainPage/Metodos.dart';
+import 'package:Supervision_Empleados/Components/MainPage/Index.dart';
+import 'package:Supervision_Empleados/Components/RevisionUniforme/ModalComentario.dart';
+import 'package:Supervision_Empleados/Components/RevisionUniforme/ModalCalificacion.dart';
 
 class RevisionUniformeMujer extends StatelessWidget {
   final String NombreUsuario;

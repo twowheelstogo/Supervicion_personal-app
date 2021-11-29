@@ -1,7 +1,7 @@
-import 'package:control_empleados/Components/Config/routes.dart';
+import 'package:Supervision_Empleados/Components/Config/routes.dart';
 import 'package:flutter/material.dart';
-import 'package:control_empleados/Components/LogIn/Index.dart';
-import 'package:control_empleados/Components/MainPage/Index.dart';
+import 'package:Supervision_Empleados/Components/LogIn/Index.dart';
+import 'package:Supervision_Empleados/Components/MainPage/Index.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {

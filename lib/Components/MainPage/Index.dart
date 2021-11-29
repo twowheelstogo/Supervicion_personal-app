@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:control_empleados/Components/MainPage/Presentacion.dart';
-import 'package:control_empleados/Components/MainPage/Cartas.dart';
-import 'package:control_empleados/Components/MainPage/Metodos.dart';
+import 'package:Supervision_Empleados/Components/MainPage/Presentacion.dart';
+import 'package:Supervision_Empleados/Components/MainPage/Cartas.dart';
+import 'package:Supervision_Empleados/Components/MainPage/Metodos.dart';
 import 'package:intl/intl.dart';
-import 'package:control_empleados/Components/Constants/Index.dart';
+import 'package:Supervision_Empleados/Components/Constants/Index.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 
 class Empleado with ChangeNotifier {

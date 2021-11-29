@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
-import 'package:control_empleados/Components/Constants/Index.dart';
+import 'package:Supervision_Empleados/Components/Constants/Index.dart';
 import 'dart:convert';
 
 class Empleado with ChangeNotifier {

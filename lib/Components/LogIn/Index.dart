@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:control_empleados/Components/LogIn/Metodos.dart';
-import 'package:control_empleados/Components/MainPage/Index.dart';
-import 'package:control_empleados/Components/Constants/Index.dart';
+import 'package:Supervision_Empleados/Components/LogIn/Metodos.dart';
+import 'package:Supervision_Empleados/Components/MainPage/Index.dart';
+import 'package:Supervision_Empleados/Components/Constants/Index.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 
@@ -78,7 +78,7 @@ class LoginPageState_ extends State<LoginPage> {
         child: Column(
           children: [
             Image.asset("assets/images/FondoInicio.png",
-                fit: BoxFit.fill, width: double.infinity, height: 380),
+                fit: BoxFit.fill, width: double.infinity, height: 400),
             SizedBox(
               height: 20,
             ),

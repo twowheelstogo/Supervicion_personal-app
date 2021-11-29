@@ -3,11 +3,11 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:control_empleados/Components/MainPage/Metodos.dart';
-import 'package:control_empleados/Components/RevisionArea/index.dart';
+import 'package:Supervision_Empleados/Components/MainPage/Metodos.dart';
+import 'package:Supervision_Empleados/Components/RevisionArea/index.dart';
 
-import 'package:control_empleados/Components/RevisionUniforme/Hombre.dart';
-import 'package:control_empleados/Components/RevisionUniforme/Mujer.dart';
+import 'package:Supervision_Empleados/Components/RevisionUniforme/Hombre.dart';
+import 'package:Supervision_Empleados/Components/RevisionUniforme/Mujer.dart';
 
 class Cartas extends StatelessWidget {
   final String NombreUsuario;

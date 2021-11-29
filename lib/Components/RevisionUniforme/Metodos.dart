@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:control_empleados/Components/Constants/Index.dart';
+import 'package:Supervision_Empleados/Components/Constants/Index.dart';
 import 'dart:convert';
 import 'package:intl/intl.dart';
 import 'package:location/location.dart';
