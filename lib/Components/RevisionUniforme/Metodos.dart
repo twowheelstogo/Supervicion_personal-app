@@ -295,7 +295,7 @@ class Comentarios {
     print(bodyEncoded);
     try {
       final response =
-          await http.post(Uri.parse(url), headers: headers, body: bodyEncoded);
+          await http.patch(Uri.parse(url), headers: headers, body: bodyEncoded);
       print(response.statusCode);
       return response;
     } on http.ClientException catch (e) {
@@ -311,7 +311,7 @@ class Comentarios {
       String Longitud,
       String TIPO,
       String TIPO2) async {
-    List lst = await ValidarComentario(COLABORADORES, TIPO2, COMENTARIO, TIPO);
+    List lst = await ValidarComentario(COLABORADORES, TIPO, COMENTARIO, TIPO2);
     String now = DateFormat("yyyy-MM-dd").format(DateTime.now());
 
     if (lst[0] == '0') {
@@ -325,9 +325,10 @@ class Comentarios {
               Fecha: now,
               ID_AIRTABLE: Decoded["records"][0]["id"],
               ID_USUARIO: COLABORADORES,
-              Tipo: TIPO2.toUpperCase(),
+              Tipo: TIPO.toUpperCase(),
               Comentario: COMENTARIO,
-              Area: TIPO2));
+              Area: TIPO2.toUpperCase()));
+          print('1');
           return [true, 'Comentario publicado exitosamente.'];
         } else {
           return [false, 'Ha ocurrido un error, intente nuevamente.'];
@@ -346,9 +347,10 @@ class Comentarios {
               Fecha: now,
               ID_AIRTABLE: Decoded["records"][0]["id"],
               ID_USUARIO: COLABORADORES,
-              Tipo: TIPO2.toUpperCase(),
+              Tipo: TIPO.toUpperCase(),
               Comentario: COMENTARIO,
-              Area: TIPO2));
+              Area: TIPO2.toUpperCase()));
+          print('2');
           return [true, 'Califación realizada exitosamente.'];
         } else {
           print('aqui 1.1 error 1');

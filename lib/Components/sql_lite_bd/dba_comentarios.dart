@@ -50,7 +50,7 @@ class DBComentario {
   static Future<void> insertar2(Esquema_Comentario datos) async {
     Database database = await _openDB();
     var res = await database.rawInsert(
-        "INSERT INTO datos(Fecha,ID_AIRTABLE,ID_USUARIO,Tipo,Comentario,Area) VALUES(?,?,?,?,?);",
+        "INSERT INTO datos(Fecha,ID_AIRTABLE,ID_USUARIO,Tipo,Comentario,Area) VALUES(?,?,?,?,?,?);",
         [
           datos.Fecha,
           datos.ID_AIRTABLE,

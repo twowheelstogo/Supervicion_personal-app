@@ -7,6 +7,9 @@ import 'package:location/location.dart';
 import 'package:Supervision_Empleados/Components/sql_lite_bd/datos.dart';
 import 'package:Supervision_Empleados/Components/sql_lite_bd/dba.dart';
 
+import 'package:Supervision_Empleados/Components/sql_lite_bd/comentarios.dart';
+import 'package:Supervision_Empleados/Components/sql_lite_bd/dba_comentarios.dart';
+
 class Comentarios {
   Future<List> ValidarCalificacion(String ID_USUARIO, String Tipo) async {
     List retornar = [];
@@ -175,6 +178,28 @@ class Comentarios {
     }
   }
 
+  Future<List> ValidarComentario(
+      String ID_USUARIO, String Tipo, String Comentario, String Area) async {
+    List retornar = [];
+    String now = DateFormat("yyyy-MM-dd").format(DateTime.now());
+
+    List<Esquema_Comentario> lst = await DBComentario.datos(Esquema_Comentario(
+        Fecha: now,
+        ID_AIRTABLE: '',
+        ID_USUARIO: ID_USUARIO,
+        Tipo: Tipo.toUpperCase(),
+        Comentario: Comentario,
+        Area: Area));
+
+    if (lst.length > 0) {
+      retornar = ['1', lst[0].ID_AIRTABLE];
+    } else {
+      retornar = ['0', ''];
+    }
+    print(retornar);
+    return retornar;
+  }
+
   Future<http.Response> ComentarTrabajo(
       String COMENTARIO,
       String COLABORADORES,
@@ -226,6 +251,58 @@ class Comentarios {
     }
   }
 
+  Future<http.Response> ComentarTrabajoPatch(
+      String COMENTARIO,
+      String COLABORADORES,
+      String Encargado,
+      String Latitud,
+      String Longitud,
+      String TIPO,
+      String TIPO2,
+      String ID) async {
+    String now = DateFormat("yyyy-MM-dd").format(DateTime.now());
+    // LocationResult result = await Geolocation.lastKnownLocation();
+    // double lat = result.location.latitude;
+    // double lng = result.location.longitude;
+    final position = await Location.instance.getLocation();
+
+    Map<String, String> headers = {
+      'Content-type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': "Bearer $Token"
+    };
+
+    Map<String, dynamic> body = {
+      "COMENTARIO": COMENTARIO,
+      "FECHA_COMENTARIO": now,
+      "ENCARGADO": [Encargado],
+      "COLABORADORES": [COLABORADORES],
+      "LATITUD": position.latitude,
+      "LONGITUD": position.longitude,
+      "AREA": TIPO.toUpperCase(),
+      "TIPO": TIPO2.toUpperCase()
+    };
+
+    final bodyEncoded = json.encode({
+      "records": [
+        {"id": ID, "fields": body}
+      ]
+    });
+
+    String url = urlApi + 'BITACORA_EMPLEADOS_COMENTARIOS';
+
+    print(url);
+    print(bodyEncoded);
+    try {
+      final response =
+          await http.patch(Uri.parse(url), headers: headers, body: bodyEncoded);
+      print(response.statusCode);
+      return response;
+    } on http.ClientException catch (e) {
+      throw (e.message);
+    }
+  }
+
   Future<List> Comentario(
       String COMENTARIO,
       String COLABORADORES,
@@ -234,18 +311,55 @@ class Comentarios {
       String Longitud,
       String TIPO,
       String TIPO2) async {
-    List lst = [];
-    try {
-      final Res = await ComentarTrabajo(
-          COMENTARIO, COLABORADORES, Encargado, Latitud, Longitud, TIPO, TIPO2);
+    List lst = await ValidarComentario(COLABORADORES, TIPO, COMENTARIO, TIPO2);
+    String now = DateFormat("yyyy-MM-dd").format(DateTime.now());
 
-      if (Res.statusCode == 200) {
-        return [true, 'Comentario publicado exitosamente.'];
-      } else {
+    if (lst[0] == '0') {
+      try {
+        final Res = await ComentarTrabajo(COMENTARIO, COLABORADORES, Encargado,
+            Latitud, Longitud, TIPO, TIPO2);
+        final Decoded = json.decode(Res.body);
+
+        if (Res.statusCode == 200) {
+          await DBComentario.insertar2(Esquema_Comentario(
+              Fecha: now,
+              ID_AIRTABLE: Decoded["records"][0]["id"],
+              ID_USUARIO: COLABORADORES,
+              Tipo: TIPO.toUpperCase(),
+              Comentario: COMENTARIO,
+              Area: TIPO2.toUpperCase()));
+          print('1');
+          return [true, 'Comentario publicado exitosamente.'];
+        } else {
+          return [false, 'Ha ocurrido un error, intente nuevamente.'];
+        }
+      } catch (e) {
         return [false, 'Ha ocurrido un error, intente nuevamente.'];
       }
-    } catch (e) {
-      return [false, 'Ha ocurrido un error, intente nuevamente.'];
+    } else {
+      try {
+        final Res = await ComentarTrabajoPatch(COMENTARIO, COLABORADORES,
+            Encargado, Latitud, Longitud, TIPO, TIPO2, lst[1]);
+        final Decoded = json.decode(Res.body);
+
+        if (Res.statusCode == 200) {
+          await DBComentario.update(Esquema_Comentario(
+              Fecha: now,
+              ID_AIRTABLE: Decoded["records"][0]["id"],
+              ID_USUARIO: COLABORADORES,
+              Tipo: TIPO.toUpperCase(),
+              Comentario: COMENTARIO,
+              Area: TIPO2.toUpperCase()));
+          print('2');
+          return [true, 'Califación realizada exitosamente.'];
+        } else {
+          print('aqui 1.1 error 1');
+          return [false, 'Ha ocurrido un error, intente nuevamente.'];
+        }
+      } catch (e) {
+        print('aqui 1.1 error 2');
+        return [false, 'Ha ocurrido un error, intente nuevamente.'];
+      }
     }
   }
 }
