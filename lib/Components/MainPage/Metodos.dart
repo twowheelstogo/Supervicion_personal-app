@@ -3,6 +3,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import 'package:Supervision_Empleados/Components/Constants/Index.dart';
 import 'dart:convert';
+import 'package:location/location.dart';
+
 
 class Empleado with ChangeNotifier {
   final String Nombre;
@@ -110,7 +112,6 @@ class Principal {
         }
       }
     }
-
     return lista;
   }
 
@@ -190,4 +191,5 @@ class TiempoLaborando {
       return NuevaFecha;
     }
   }
+  
 }
