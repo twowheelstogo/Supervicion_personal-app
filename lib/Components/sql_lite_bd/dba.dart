@@ -1,5 +1,4 @@
 import 'dart:ffi';
-
 import 'package:Supervision_Empleados/Components/sql_lite_bd/datos.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
@@ -9,7 +8,7 @@ class DB {
     return openDatabase(join(await getDatabasesPath(), 'datos.db'),
         onCreate: (db, version) {
       return db.execute(
-          "CREATE TABLE datos (Fecha DATE, ID_AIRTABLE TEXT PRIMARY KEY,ID_USUARIO TEXT)");
+          "CREATE TABLE datos (Fecha TEXT, ID_AIRTABLE TEXT,ID_USUARIO TEXT,Tipo TEXT)");
     }, version: 1);
   }
 
@@ -31,9 +30,11 @@ class DB {
         whereArgs: [datos.Fecha, datos.ID_USUARIO, datos.Tipo]);
   }
 
-  static Future<List<Esquema>> datos() async {
+  static Future<List<Esquema>> datos(Esquema datos) async {
     Database database = await _openDB();
-    final List<Map<String, dynamic>> datosMap = await database.query("datos");
+    final List<Map<String, dynamic>> datosMap = await database.query("datos",
+        where: "Tipo=? AND Fecha=? AND ID_USUARIO = ?",
+        whereArgs: [datos.Tipo, datos.Fecha, datos.ID_USUARIO]);
     return List.generate(
         datosMap.length,
         (index) => Esquema(
@@ -46,8 +47,8 @@ class DB {
 
   static Future<void> insertar2(Esquema datos) async {
     Database database = await _openDB();
-    var resultado = await database
-        .rawInsert("INSERT INTO datos (Fecha, ID_AIRTABLE_ID_USUARIO)"
-            "VALUES (${datos.Fecha},${datos.ID_AIRTABLE},${datos.ID_USUARIO})");
+    var res = await database.rawInsert(
+        "INSERT INTO datos(Fecha,ID_AIRTABLE,ID_USUARIO,Tipo) VALUES(?,?,?,?);",
+        [datos.Fecha, datos.ID_AIRTABLE, datos.ID_USUARIO, datos.Tipo]);
   }
 }

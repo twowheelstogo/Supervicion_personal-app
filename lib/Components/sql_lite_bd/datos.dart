@@ -1,5 +1,5 @@
 class Esquema {
-  DateTime Fecha;
+  String Fecha;
   String ID_AIRTABLE;
   String ID_USUARIO;
   String Tipo;
