@@ -98,6 +98,8 @@ class MainPage_ extends State<MainPage> {
   }
 
   MainPage_() {
+    String now = DateFormat("yyyy-MM-dd").format(DateTime.now());
+    Principal().storage_('FechaActual', now);
     getBandera().then((val) => setState(() {
           Loading = val;
         }));

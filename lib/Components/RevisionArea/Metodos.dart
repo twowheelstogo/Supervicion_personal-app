@@ -6,7 +6,6 @@ import 'package:intl/intl.dart';
 import 'package:location/location.dart';
 import 'package:Supervision_Empleados/Components/sql_lite_bd/datos.dart';
 import 'package:Supervision_Empleados/Components/sql_lite_bd/dba.dart';
-
 import 'package:Supervision_Empleados/Components/sql_lite_bd/comentarios.dart';
 import 'package:Supervision_Empleados/Components/sql_lite_bd/dba_comentarios.dart';
 

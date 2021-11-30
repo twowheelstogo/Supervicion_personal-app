@@ -37,7 +37,8 @@ class Cartas extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    void CalificarUsuario(int Opcion) {
+    void CalificarUsuario(int Opcion) async {
+      await Principal().TruncateTable();
       if (Opcion == 1) {
         if (this.Genero == 'Masculino') {
           Navigator.push<void>(

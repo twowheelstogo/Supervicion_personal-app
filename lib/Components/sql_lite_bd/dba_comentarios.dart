@@ -23,6 +23,11 @@ class DBComentario {
         .delete("datos", where: "Fecha = ?", whereArgs: [datos.Fecha]);
   }
 
+  static Future<int> deleteSinWhere() async {
+    Database database = await _openDB();
+    return database.delete("datos");
+  }
+
   static Future<int> update(Esquema_Comentario datos) async {
     Database database = await _openDB();
     return database.update("datos", datos.toMap(),

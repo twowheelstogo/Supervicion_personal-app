@@ -4,7 +4,8 @@ import 'package:http/http.dart' as http;
 import 'package:Supervision_Empleados/Components/Constants/Index.dart';
 import 'dart:convert';
 import 'package:location/location.dart';
-
+import 'package:intl/intl.dart';
+import 'package:Supervision_Empleados/Components/sql_lite_bd/dba_comentarios.dart';
 
 class Empleado with ChangeNotifier {
   final String Nombre;
@@ -149,6 +150,19 @@ class Principal {
           " ";
     }
     return tmp3.substring(0, tmp3.length - 1);
+  }
+
+  Future<void> TruncateTable() async {
+    String now = DateFormat("yyyy-MM-dd").format(DateTime.now());
+    bool Bandera = false;
+    final prefs = await SharedPreferences.getInstance();
+    final res = prefs.getString('FechaActual');
+
+    if (res != null) {
+      if (res.toString() != now) {
+        DBComentario.deleteSinWhere();
+      }
+    }
   }
 }
 

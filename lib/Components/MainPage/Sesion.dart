@@ -30,6 +30,7 @@ class LogOut_ extends State<LogOut> {
     prefs.remove("usuario");
     prefs.remove("IdAIRTABLE");
     prefs.remove("DPI");
+    prefs.remove("FechaActual");
   }
 
   String NombreUsuario = "";
