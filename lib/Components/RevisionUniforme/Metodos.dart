@@ -17,6 +17,7 @@ class Comentarios {
         ID_AIRTABLE: '',
         ID_USUARIO: ID_USUARIO,
         Tipo: Tipo.toUpperCase()));
+
     if (lst.length > 0) {
       retornar = ['1', lst[0].ID_AIRTABLE];
     } else {
@@ -40,13 +41,14 @@ class Comentarios {
       try {
         final Res = await CalificarTrabajo(TIPO_EVALUACION, COLABORADORES,
             Encargado, Latitud, Longitud, CALIFICACION);
+        final Decoded = json.decode(Res.body);
 
         if (Res.statusCode == 200) {
           await DB.insertar2(Esquema(
               Fecha: now,
-              ID_AIRTABLE: Encargado,
+              ID_AIRTABLE: Decoded["records"][0]["id"],
               ID_USUARIO: COLABORADORES,
-              Tipo: TIPO_EVALUACION));
+              Tipo: TIPO_EVALUACION.toUpperCase()));
           return [true, 'Califación realizada exitosamente.'];
         } else {
           print('aqui 1.0 error 1');
@@ -60,13 +62,14 @@ class Comentarios {
       try {
         final Res = await CalificarTrabajoPatch(TIPO_EVALUACION, COLABORADORES,
             Encargado, Latitud, Longitud, CALIFICACION, lst[1]);
+        final Decoded = json.decode(Res.body);
 
         if (Res.statusCode == 200) {
           await DB.update(Esquema(
               Fecha: now,
-              ID_AIRTABLE: Encargado,
+              ID_AIRTABLE: Decoded["records"][0]["id"],
               ID_USUARIO: COLABORADORES,
-              Tipo: TIPO_EVALUACION));
+              Tipo: TIPO_EVALUACION.toUpperCase()));
           return [true, 'Califación realizada exitosamente.'];
         } else {
           print('aqui 1.1 error 1');
@@ -154,11 +157,11 @@ class Comentarios {
 
     final bodyEncoded = json.encode({
       "records": [
-        {"fields": body}
+        {"id": ID, "fields": body}
       ]
     });
 
-    String url = urlApi + 'BITACORA_EMPLEADOS_CALIFICACION/$ID';
+    String url = urlApi + 'BITACORA_EMPLEADOS_CALIFICACION';
 
     print(url);
     print(bodyEncoded);
