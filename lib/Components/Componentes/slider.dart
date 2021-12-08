@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:Supervision_Empleados/Components/RevisionUniforme/Metodos.dart';
-import 'package:modal_progress_hud/modal_progress_hud.dart';
+import 'package:Supervision_Empleados/Components/Componentes/Spiner.dart';
 
 class MySliderApp extends StatefulWidget {
   String TIPO_EVALUACION;
@@ -27,6 +27,7 @@ class _MySliderAppState extends State<MySliderApp> {
       Loading = true;
     });
 
+    showDialog(context: context, builder: (_)=>Spinner(),barrierDismissible: false);
     List Res = await Comentarios().Calificacion(
         widget.TIPO_EVALUACION,
         widget.COLABORADORES,
@@ -38,6 +39,7 @@ class _MySliderAppState extends State<MySliderApp> {
     setState(() {
       Loading = false;
     });
+    Navigator.of(context).pop(true);
 
     final _snackbar = SnackBar(content: Text(Res[1]));
 

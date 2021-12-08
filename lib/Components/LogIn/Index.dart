@@ -4,7 +4,7 @@ import 'package:Supervision_Empleados/Components/LogIn/Metodos.dart';
 import 'package:Supervision_Empleados/Components/MainPage/Index.dart';
 import 'package:Supervision_Empleados/Components/Constants/Index.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:modal_progress_hud/modal_progress_hud.dart';
+import 'package:Supervision_Empleados/Components/Componentes/Spiner.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -49,12 +49,15 @@ class LoginPageState_ extends State<LoginPage> {
       Loading = true;
     });
 
+    showDialog(context: context, builder: (_)=>Spinner(),barrierDismissible: false);
     bandera = await Autenticacion().Autenticar(username.text);
     final _snackbar = SnackBar(content: Text(bandera[1]));
 
     setState(() {
       Loading = false;
     });
+
+    Navigator.of(context).pop(true);
 
     if (bandera[0]) {
       ScaffoldMessenger.of(context).showSnackBar(_snackbar);
@@ -73,12 +76,11 @@ class LoginPageState_ extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: ModalProgressHUD(
-      child: SingleChildScrollView(
+       body: SingleChildScrollView(
         child: Column(
           children: [
             Image.asset("assets/images/FondoInicio.png",
-                fit: BoxFit.fill, width: double.infinity, height: 400),
+                fit: BoxFit.fill, width: double.infinity, height: 350),
             SizedBox(
               height: 20,
             ),
@@ -161,14 +163,6 @@ class LoginPageState_ extends State<LoginPage> {
                     new Container(child: Text('Power by Qubit Systems 2021'))),
           ],
         ),
-      ),
-      inAsyncCall: Loading,
-      // demo of some additional parameters
-      opacity: 0.5,
-      progressIndicator: CircularProgressIndicator(
-        valueColor:
-            new AlwaysStoppedAnimation<Color>(Color.fromRGBO(255, 255, 255, 1)),
-      ),
-    ));
+      ));
   }
 }

@@ -4,6 +4,7 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:Supervision_Empleados/Components/MainPage/Index.dart';
 import 'package:Supervision_Empleados/Components/RevisionUniforme/Metodos.dart';
+import 'package:Supervision_Empleados/Components/Componentes/Spiner.dart';
 
 class ModalComentario extends StatefulWidget {
   final String COLABORADORES;
@@ -23,6 +24,7 @@ class ModalComentario_ extends State<ModalComentario> {
   final _Comentario_ = TextEditingController();
 
   void CalificarComentarios() async {
+    showDialog(context: context, builder: (_)=>Spinner(),barrierDismissible: false);
     List Res = await Comentarios().Comentario(
         _Comentario_.text.toString(),
         widget.COLABORADORES,
@@ -32,7 +34,7 @@ class ModalComentario_ extends State<ModalComentario> {
         'AREA DE TRABAJO',
         widget.Tipo);
     final _snackbar = SnackBar(content: Text(Res[1]));
-
+Navigator.of(context).pop(true);
     if (Res[0] == true) {
       Navigator.pop(context);
       ScaffoldMessenger.of(context).showSnackBar(_snackbar);

@@ -6,7 +6,7 @@ import 'package:Supervision_Empleados/Components/MainPage/Cartas.dart';
 import 'package:Supervision_Empleados/Components/MainPage/Metodos.dart';
 import 'package:intl/intl.dart';
 import 'package:Supervision_Empleados/Components/Constants/Index.dart';
-import 'package:modal_progress_hud/modal_progress_hud.dart';
+import 'package:Supervision_Empleados/Components/Componentes/Spiner.dart';
 
 class Empleado with ChangeNotifier {
   final String Nombre;
@@ -32,6 +32,7 @@ class Empleado with ChangeNotifier {
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
   @override
+  
   MainPage_ createState() {
     return new MainPage_();
   }
@@ -51,6 +52,7 @@ class MainPage_ extends State<MainPage> {
     UsuarioBusqueda.text = ""; //innitail value of text field
     RegionBusqueda.text = "";
     AgenciaBusqueda.text = "";
+    MainPage_();
     super.initState();
   }
 
@@ -71,6 +73,7 @@ class MainPage_ extends State<MainPage> {
   }
 
   Future<List<Empleado>> getList(String DPI) async {
+    showDialog(context: context, builder: (_)=>Spinner(),barrierDismissible: false);
     final lst = await Principal().DataEmpleados(DPI);
     List<Empleado> newlst = [];
     int contador = 0;
@@ -89,6 +92,7 @@ class MainPage_ extends State<MainPage> {
       }
       contador = contador + 1;
     }
+    Navigator.of(context).pop(true);
     return newlst;
   }
 
@@ -100,6 +104,8 @@ class MainPage_ extends State<MainPage> {
   MainPage_() {
     String now = DateFormat("yyyy-MM-dd").format(DateTime.now());
     Principal().storage_('FechaActual', now);
+    
+
     getBandera().then((val) => setState(() {
           Loading = val;
         }));
@@ -115,15 +121,14 @@ class MainPage_ extends State<MainPage> {
                 ListaEmpleados = val2;
                 Loading = false;
               }));
-        }));
+        }));        
   }
 
   String now = DateFormat("yyyy-MM-dd").format(DateTime.now());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: ModalProgressHUD(
-      child: SingleChildScrollView(
+        body:  SingleChildScrollView(
           child: Column(
         children: [
           Presentacion(),
@@ -164,14 +169,7 @@ class MainPage_ extends State<MainPage> {
                 i.Tiempo, i.Region, i.ID_EMPLEADO, ID_AIRTABLE)
         ],
       )),
-      inAsyncCall: Loading,
-      // demo of some additional parameters
-      opacity: 0.5,
-      progressIndicator: CircularProgressIndicator(
-        valueColor:
-            new AlwaysStoppedAnimation<Color>(Color.fromRGBO(255, 255, 255, 1)),
-      ),
-    ));
+      );
   }
 
   Widget TextFieldDinamico__(
