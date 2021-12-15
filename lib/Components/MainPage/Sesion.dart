@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:Supervision_Empleados/Components/LogIn/Index.dart';
+import 'package:Supervision_Empleados/Components/sql_lite_bd/dba_comentarios.dart';
+import 'package:Supervision_Empleados/Components/sql_lite_bd/dba.dart';
 
 class LogOut extends StatefulWidget {
   @override
@@ -31,7 +33,11 @@ class LogOut_ extends State<LogOut> {
     prefs.remove("IdAIRTABLE");
     prefs.remove("DPI");
     prefs.remove("FechaActual");
+     DBComentario.deleteSinWhere();
+     DB.deleteSinWhere();
   }
+
+
 
   String NombreUsuario = "";
 

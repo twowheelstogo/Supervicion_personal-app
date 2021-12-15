@@ -51,4 +51,10 @@ class DB {
         "INSERT INTO datos(Fecha,ID_AIRTABLE,ID_USUARIO,Tipo) VALUES(?,?,?,?);",
         [datos.Fecha, datos.ID_AIRTABLE, datos.ID_USUARIO, datos.Tipo]);
   }
+
+   static Future<int> deleteSinWhere() async {
+    Database database = await _openDB();
+    return database.delete("datos");
+  }
+  
 }

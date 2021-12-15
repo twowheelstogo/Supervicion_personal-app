@@ -21,7 +21,6 @@ void main() async {
   }
 
   String Ruta = await Ruta_();
-
   runApp(MyApp(Ruta));
 }
 

@@ -144,13 +144,13 @@ class MainPage_ extends State<MainPage> {
                         width: MediaQuery.of(context).size.width * 0.9,
                         padding: EdgeInsets.symmetric(horizontal: 20),
                         child: TextFieldDinamico__(
-                            UsuarioBusqueda, 'Usuario', 'UsuarioB')),
+                            UsuarioBusqueda, 'Empleado', 'UsuarioB')),
                     Container(
                         margin: const EdgeInsets.only(top: 10),
                         width: MediaQuery.of(context).size.width * 0.9,
                         padding: EdgeInsets.symmetric(horizontal: 20),
                         child: TextFieldDinamico__(
-                            RegionBusqueda, 'Macroregión', 'Region')),
+                            RegionBusqueda, 'Región', 'Region')),
                     Container(
                         margin: const EdgeInsets.only(top: 10),
                         width: MediaQuery.of(context).size.width * 0.9,

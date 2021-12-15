@@ -6,6 +6,7 @@ import 'dart:convert';
 import 'package:location/location.dart';
 import 'package:intl/intl.dart';
 import 'package:Supervision_Empleados/Components/sql_lite_bd/dba_comentarios.dart';
+import 'package:Supervision_Empleados/Components/sql_lite_bd/dba.dart';
 
 class Empleado with ChangeNotifier {
   final String Nombre;
@@ -71,7 +72,7 @@ class Principal {
         final TotalEmpleados =
             Decoded["records"][0]["fields"]["TOTAL_EMPLEADOS_ASIGNADOS"];
         final NOMBRES_EMPLEADOS =
-            Decoded["records"][0]["fields"]["NOMBRES_EMPLEADOS"];
+            Decoded["records"][0]["fields"]["NOMBRES_EMPLEADOS"];        
         int Contador = 0;
         int Contador2 = 0;
         int Contador3 = 0;
@@ -161,6 +162,7 @@ class Principal {
     if (res != null) {
       if (res.toString() != now) {
         DBComentario.deleteSinWhere();
+        DB.deleteSinWhere();
       }
     }
   }
