@@ -66,56 +66,56 @@ class Principal {
     List<Empleado> lista = [];
     final Response = await getEmpleadosInfo(id);
     final Decoded = json.decode(Response.body);
+    int Contador = 0;
 
     if (Response.statusCode == 200) {
       if (Decoded["records"].length > 0 && id.length > 0) {
-        final TotalEmpleados =
-            Decoded["records"][0]["fields"]["TOTAL_EMPLEADOS_ASIGNADOS"];
-        final NOMBRES_EMPLEADOS =
-            Decoded["records"][0]["fields"]["NOMBRES_EMPLEADOS"];        
-        int Contador = 0;
-        int Contador2 = 0;
-        int Contador3 = 0;
 
-        for (var i in TotalEmpleados) {
-          for (var j in NOMBRES_EMPLEADOS) {
-            if (Contador == i) {
-              Contador = 0;
-              break;
-            } else {
+        final TotalEmpleados = Decoded["records"][0]["fields"]["EMPLEADOS"];
+        final NOMBRES_EMPLEADOS = Decoded["records"][0]["fields"]["NOMBRES_EMPLEADOS"];                
+        var tmp_Date = Decoded["records"][0]["fields"]["FECHA_INGRESO"].toString().replaceAll('[', '').replaceAll(']', '').replaceAll(' ', '').split(',');                            
+        var tmpStatus = Decoded["records"][0]["fields"]["STATUS_EMPLEADOS"].toString().replaceAll('[', '').replaceAll(']', '').split(',');              
+        var tmpGenero = Decoded["records"][0]["fields"]["GENERO"].toString().replaceAll('[', '').replaceAll(']', '').split(',');      
+        var tmpAgencia = RetornarNombre(Decoded["records"][0]["fields"]["EMPLEADO-AGENCIA"]); 
+        var tmpRegion = RetornarNombre(Decoded["records"][0]["fields"]["EMPLEADO-REGION"]);          
+        var tmpEmpleados = Decoded["records"][0]["fields"]["EMPLEADOS"].toString().replaceAll('[', '').replaceAll(']', '').split(','); 
+
+        print('1: ${tmpAgencia.length} || 2: ${TotalEmpleados.length}');
+
+        for (var i in TotalEmpleados) {                               
               DateTime parseDt = DateTime.parse(
-                  Decoded["records"][0]["fields"]["FECHA_INGRESO"][Contador3]);
-
-              var tmp = Decoded["records"][0]["fields"]["STATUS_EMPLEADOS"]
-                      [Contador2]
-                  .split(',');
-
+                 tmp_Date[Contador].toString());                  
+                                          
               lista.add(Empleado(
                   Nombre: Convertir(Decoded["records"][0]["fields"]
-                          ["NOMBRES_EMPLEADOS"][Contador3]
+                          ["NOMBRES_EMPLEADOS"][Contador]
                       .toString()),
-                  Agencia: Convertir(Decoded["records"][0]["fields"]
-                          ["NOMBRE-AGENCIA"][Contador2]
-                      .toString()),
+                  Agencia: Convertir(tmpAgencia[Contador]),
                   urlFoto: Decoded["records"][0]["fields"]["FOTO_PERFIL"]
-                      [Contador3]["url"],
-                  Genero: Decoded["records"][0]["fields"]["GENERO"][Contador3],
-                  Estado: Convertir(tmp[Contador].replaceAll(' ', '')),
-                  Tiempo:
-                      DateTime.utc(parseDt.year, parseDt.month, parseDt.day),
-                  Region:
-                      Convertir(Decoded["records"][0]["fields"]["TMP_REGION"][Contador2].toString()),
-                  ID_EMPLEADO: Decoded["records"][0]["fields"]["EMPLEADOS"][Contador3]));
-              Contador = Contador + 1;
-            }
-            Contador3 = Contador3 + 1;
-          }
-          Contador2 = Contador2 + 1;
+                      [Contador]["url"],
+                  Genero: tmpGenero[Contador],
+                  Estado: Convertir(tmpStatus[Contador].replaceAll(' ', '')),
+                  Tiempo: DateTime.utc(parseDt.year, parseDt.month, parseDt.day),
+                  Region: Convertir(tmpRegion[Contador].replaceAll('REGION ', '').toString()),
+                  ID_EMPLEADO: tmpEmpleados[Contador]));
+              Contador = Contador + 1;          
         }
       }
     }
     return lista;
   }
+
+  List<String> RetornarNombre(var tmp){    
+    List<String> Nuevo = [];
+    for(var tmp2 in tmp)
+    {
+      var tmp3 = tmp2.split('||');
+      Nuevo.add(tmp3[1]);
+    }  
+    return Nuevo;
+  }
+
+  
 
   Future<http.Response> getEmpleadosInfo(String NombreUsuario) async {
     String url = urlApi +

@@ -37,7 +37,6 @@ class Autenticacion {
       bandera = true;
       Mensaje = "Ha ocurrido un error, intente nuevamente.";
     }
-
     return [bandera, Mensaje];
   }
 
