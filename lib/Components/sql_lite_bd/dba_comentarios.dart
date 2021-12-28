@@ -8,7 +8,7 @@ class DBComentario {
     return openDatabase(join(await getDatabasesPath(), 'comentarios.db'),
         onCreate: (db, version) {
       return db.execute(
-          "CREATE TABLE datos (Fecha TEXT, ID_AIRTABLE TEXT,ID_USUARIO TEXT,Tipo TEXT, Comentario TEXT, Area TEXT)");
+          "CREATE TABLE comentarios (Fecha TEXT, ID_AIRTABLE TEXT,ID_USUARIO TEXT,Tipo TEXT, Comentario TEXT, Area TEXT)");
     }, version: 1);
   }
 
