@@ -63,14 +63,17 @@ class Principal {
   }
 
   Future<List<Empleado>> DataEmpleados(String id) async {
-    List<Empleado> lista = [];
-    final Response = await getEmpleadosInfo(id);
-    final Decoded = json.decode(Response.body);
-    int Contador = 0;
-
+    List<Empleado> lista = [];    
+      bool bandera = false;
+      String url = "ENCARGADO_REGION?filterByFormula=AND({DPI}='" +id +"')";
+    do 
+    {
+    final Response = await getEmpleadosInfo(url);    
+    int Contador = 0;        
     if (Response.statusCode == 200) {
+      final Decoded = json.decode(Response.body);
+      
       if (Decoded["records"].length > 0 && id.length > 0) {
-
         final TotalEmpleados = Decoded["records"][0]["fields"]["EMPLEADOS"];
         final NOMBRES_EMPLEADOS = Decoded["records"][0]["fields"]["NOMBRES_EMPLEADOS"];                
         var tmp_Date = Decoded["records"][0]["fields"]["FECHA_INGRESO"].toString().replaceAll('[', '').replaceAll(']', '').replaceAll(' ', '').split(',');                            
@@ -78,10 +81,7 @@ class Principal {
         var tmpGenero = Decoded["records"][0]["fields"]["GENERO"].toString().replaceAll('[', '').replaceAll(']', '').split(',');      
         var tmpAgencia = RetornarNombre(Decoded["records"][0]["fields"]["EMPLEADO-AGENCIA"]); 
         var tmpRegion = RetornarNombre(Decoded["records"][0]["fields"]["EMPLEADO-REGION"]);          
-        var tmpEmpleados = Decoded["records"][0]["fields"]["EMPLEADOS"].toString().replaceAll('[', '').replaceAll(']', '').split(','); 
-
-        print('1: ${tmpAgencia.length} || 2: ${TotalEmpleados.length}');
-
+        var tmpEmpleados = Decoded["records"][0]["fields"]["EMPLEADOS"].toString().replaceAll('[', '').replaceAll(']', '').split(',');         
         for (var i in TotalEmpleados) {                               
               DateTime parseDt = DateTime.parse(
                  tmp_Date[Contador].toString());                  
@@ -101,7 +101,14 @@ class Principal {
               Contador = Contador + 1;          
         }
       }
+      if(Decoded["offset"] != null) { url = "ENCARGADO_REGION?offset=" + Decoded["offset"];} else {bandera=true;}
     }
+    else{
+      bandera = true;
+    }
+    
+    }
+    while(bandera != true);
     return lista;
   }
 
@@ -117,11 +124,8 @@ class Principal {
 
   
 
-  Future<http.Response> getEmpleadosInfo(String NombreUsuario) async {
-    String url = urlApi +
-        "ENCARGADO_REGION?filterByFormula=AND({DPI}='" +
-        NombreUsuario +
-        "')";
+  Future<http.Response> getEmpleadosInfo(String pagination) async {   
+     String url = urlApi + pagination;
     print(url);
     Map<String, String> headers = {
       'Content-type': 'application/json',

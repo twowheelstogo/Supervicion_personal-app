@@ -1,4 +1,3 @@
-import 'dart:ffi';
 import 'package:Supervision_Empleados/Components/sql_lite_bd/datos.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
