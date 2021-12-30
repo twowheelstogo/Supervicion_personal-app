@@ -79,7 +79,7 @@ class RevisionArea extends StatelessWidget {
                   height: MediaQuery.of(context).size.width * 0.05,
                 ),
                 AreasTrabajo('assets/images/AreaTrabajo/muebles.png',
-                    'Inmuebles', context),
+                    'Muebles', context),
                 SizedBox(
                   height: MediaQuery.of(context).size.width * 0.05,
                 )
