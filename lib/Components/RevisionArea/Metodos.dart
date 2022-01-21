@@ -103,8 +103,8 @@ class Comentarios {
     Map<String, dynamic> body = {
       "TIPO_EVALUACION": TIPO_EVALUACION.toUpperCase(),
       "FECHA_REVISION": now,
-      "ENCARGADO": [Encargado],
-      "COLABORADORES": [COLABORADORES],
+      "ENCARGADO": [Encargado.replaceAll(" ", "")],
+      "COLABORADORES": [COLABORADORES.replaceAll(" ", "")],
       "LATITUD": position.latitude,
       "LONGITUD": position.longitude,
       "CALIFICACION": CALIFICACION
@@ -150,8 +150,8 @@ class Comentarios {
     Map<String, dynamic> body = {
       "TIPO_EVALUACION": TIPO_EVALUACION.toUpperCase(),
       "FECHA_REVISION": now,
-      "ENCARGADO": [Encargado],
-      "COLABORADORES": [COLABORADORES],
+      "ENCARGADO": [Encargado.replaceAll(" ", "")],
+      "COLABORADORES": [COLABORADORES.replaceAll(" ", "")],
       "LATITUD": position.latitude,
       "LONGITUD": position.longitude,
       "CALIFICACION": CALIFICACION
@@ -223,7 +223,7 @@ class Comentarios {
       "COMENTARIO": COMENTARIO,
       "FECHA_COMENTARIO": now,
       "ENCARGADO": [Encargado],
-      "COLABORADORES": [COLABORADORES],
+      "COLABORADORES": [COLABORADORES.replaceAll(" ", "")],
       "LATITUD": position.latitude,
       "LONGITUD": position.longitude,
       "AREA": TIPO.toUpperCase(),
@@ -274,8 +274,8 @@ class Comentarios {
     Map<String, dynamic> body = {
       "COMENTARIO": COMENTARIO,
       "FECHA_COMENTARIO": now,
-      "ENCARGADO": [Encargado],
-      "COLABORADORES": [COLABORADORES],
+      "ENCARGADO": [Encargado.replaceAll(" ", "")],
+      "COLABORADORES": [COLABORADORES.replaceAll(" ", "")],
       "LATITUD": position.latitude,
       "LONGITUD": position.longitude,
       "AREA": TIPO.toUpperCase(),
